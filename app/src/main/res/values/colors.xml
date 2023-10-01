@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="deep_purple_400">#7d56a5</color>
+    <color name="indigo_600">#4048ab</color>
+    <color name="deep_purple_A101">#b665ff</color>
+    <color name="indigo_A200">#4471fe</color>
+    <color name="deep_purple_A200">#7452ff</color>
+    <color name="indigo_300">#637ede</color>
+    <color name="red_A200_aa">#aaf94c4c</color>
+    <color name="red_A200_aa1">#aafa4d4d</color>
+    <color name="red_A700">#ff0000</color>
+    <color name="lightgrey">#BFBFBF</color>
+
 </resources>

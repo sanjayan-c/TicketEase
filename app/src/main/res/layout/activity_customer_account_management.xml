@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomerHome"
+    android:background="@drawable/cus_purple">
+
+    <RelativeLayout
+        android:id="@+id/cusAccManagementHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/cusAccManagementBack"
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription"
+            android:src="@drawable/cus_img_backarrow" />
+
+        <TextView
+            style="@style/txtOpenSansromanbold20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Account Management"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/cusAccountProfileImageFrame"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/cusAccManagementHeading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/cus_purple1">
+    <ImageView
+        android:id="@+id/cusAccountProfileImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/cus_image_not_found"
+        android:contentDescription="Profile Image" />
+
+        <FrameLayout
+            android:id="@+id/cusAccountProfileImageEditFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#4DCCCCCC"
+            android:visibility="gone">
+            <Button
+                android:id="@+id/cusAccManageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:text="Change Image" />
+            <Button
+                android:id="@+id/cusAccManageButton2"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="50dp"
+                android:layout_marginTop="100dp"
+                android:text="Remove Image" />
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/cusAccountFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cusAccountProfileImageFrame"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp">
+        <TextView
+            style="@style/txtOpenSansromanbold20"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="First Name"
+            android:textSize="18sp"
+            android:gravity="center_vertical"/>
+        <EditText
+            android:background="@drawable/cus_profile_inputbox_border"
+            android:id="@+id/editTextFirstName"
+            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:hint="Albert"
+            android:textSize="18sp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textColorHint="@color/white"
+            android:inputType="text"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cusAccountLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cusAccountFirstName"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp">
+        <TextView
+            style="@style/txtOpenSansromanbold20"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Last Name"
+            android:textSize="18sp"
+            android:gravity="center_vertical"/>
+        <EditText
+            android:background="@drawable/cus_profile_inputbox_border"
+            android:id="@+id/viewInputLastName"
+            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:hint="Johnson"
+            android:textSize="18sp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textColorHint="@color/white"
+            android:inputType="text"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cusAccountNIC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cusAccountLastName"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp">
+        <TextView
+            style="@style/txtOpenSansromanbold20"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="NIC"
+            android:textSize="18sp"
+            android:gravity="center_vertical"/>
+        <EditText
+            android:background="@drawable/cus_profile_inputbox_border"
+            android:id="@+id/viewInputNIC"
+            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:hint="199931100783"
+            android:textSize="18sp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textColorHint="@color/white"
+            android:inputType="text"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cusAccountGmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cusAccountNIC"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp">
+        <TextView
+            style="@style/txtOpenSansromanbold20"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Gmail"
+            android:textSize="18sp"
+            android:gravity="center_vertical"/>
+        <EditText
+            android:background="@drawable/cus_profile_inputbox_border"
+            android:id="@+id/viewInputGmail"
+            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:hint="John@gmail.com"
+            android:textSize="18sp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textColorHint="@color/white"
+            android:inputType="text"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cusAccountButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_centerHorizontal="true">
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btnUpdate"
+            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:singleLine="true"
+            android:text="Update"
+            android:layout_marginEnd="10dp"
+            android:textAllCaps="false"
+            style="@style/btnSolidRoundedOutline"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btnCancel"
+            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:singleLine="true"
+            android:text="Cancel"
+            android:layout_marginStart="10dp"
+            android:textAllCaps="false"
+            style="@style/btnSolidRoundedOutline_1"/>
+    </LinearLayout>
+
+</RelativeLayout>
