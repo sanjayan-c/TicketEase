@@ -44,6 +44,12 @@
         <item name="android:fontFamily">@font/open_sans_hebrew</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
+    <style name="custxtOpenSansHebrewregular15_1Bold">
+        <item name="android:textColor">@color/gray_900</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+    </style>
     <style name="custxtOpenSansHebrewbold20">
         <item name="android:textColor">@color/bluegray_900</item>
         <item name="android:fontFamily">@font/open_sans_hebrew</item>

@@ -64,9 +64,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/cusTimeTableListBookNowPart"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="onBookNowClick">
 
         <ImageView android:id="@+id/cusTimeTableListBookNow"
             android:layout_height="38dp"

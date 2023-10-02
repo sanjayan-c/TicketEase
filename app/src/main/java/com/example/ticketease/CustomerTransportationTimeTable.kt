@@ -4,6 +4,9 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
@@ -29,7 +32,7 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
     private lateinit var cusEndLocationsAdapter: ArrayAdapter<String>
     private var selectedStartLocation: String = ""
     private var selectedEndLocation: String = ""
-
+    private var selectedDate: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_transportation_time_table)
@@ -55,6 +58,18 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
         // Handle the click event on the ImageView to show the dropdown
         cusTransMethodSelect.setOnClickListener {
             cusTransMethodSpinner.performClick() // Show the dropdown
+        }
+        // Set an OnItemSelectedListener for the Spinner
+        cusTransMethodSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                // Get the selected travel method
+                val selectedTravelMethod = travelMethods[position]
+                // Log the selected travel method
+                Log.d("SelectedTravelMethod", selectedTravelMethod)
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
         }
 
         // Travel Date
@@ -108,11 +123,14 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
             TransportationItem("Jaffna",  "Colombo","NA - 3216", "4.15 P.M"),
             TransportationItem("Kandy",  "Galle","NA - 6556", "7.15 P.M")
         )
-
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerListCustomerTransport)
-        val adapter = TransportationAdapter(sampleData)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        var cusTransSearch=findViewById<TextView>(R.id.cusTransSearch)
+        cusTransSearch.setOnClickListener {
+            val recyclerView = findViewById<RecyclerView>(R.id.recyclerListCustomerTransport)
+            Log.d("SelectedDate", selectedDate)
+            val adapter = TransportationAdapter(sampleData, selectedDate)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(this)
+        }
 
     }
 
@@ -126,7 +144,10 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
             this,
             { _, selectedYear, selectedMonth, selectedDay ->
                 // Handle date selection here
-                val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                //selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                val formattedDay = String.format("%02d", selectedDay)
+                val formattedMonth = String.format("%02d", selectedMonth + 1) // Adding 1 because months are 0-indexed
+                selectedDate = "$formattedDay/$formattedMonth/$selectedYear"
                 cusTransDateText.text = selectedDate
             },
             year, month, dayOfMonth

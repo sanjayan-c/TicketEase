@@ -220,7 +220,7 @@
         android:layout_centerHorizontal="true">
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
-            android:id="@+id/btnUpdate"
+            android:id="@+id/btnCusUpdate"
             android:layout_height="50dp"
             android:layout_width="100dp"
             android:singleLine="true"
@@ -230,7 +230,7 @@
             style="@style/cusbtnSolidRoundedOutline"/>
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
-            android:id="@+id/btnCancel"
+            android:id="@+id/btnCusCancel"
             android:layout_height="50dp"
             android:layout_width="100dp"
             android:singleLine="true"
