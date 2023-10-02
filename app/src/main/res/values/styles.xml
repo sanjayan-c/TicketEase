@@ -1,20 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="txtOpenSansromanbold20">
+    <style name="custxtOpenSansromanbold20">
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/open_sans</item>
         <item name="android:textFontWeight" tools:targetApi="p">700</item>
     </style>
-    <style name="btnSolidRoundedOutline">
+    <style name="cusbtnSolidRoundedOutline">
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
         <item name="android:background">@drawable/cus_button_update</item>
     </style>
-    <style name="btnSolidRoundedOutline_1">
+    <style name="cusbtnSolidRoundedOutline_1">
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
         <item name="android:background">@drawable/cus_button_cancel</item>
+    </style>
+    <style name="custxtInterregular20">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+    <style name="custxtSolidRoundedOutline">
+        <item name="android:textColor">@color/gray_50</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+        <item name="android:background">@drawable/cus_trans_timetable_search</item>
+    </style>
+    <style name="cusSpinnerDropDownStyle">
+        <item name="android:background">@drawable/cus_trans_timetable_search</item>
+    </style>
+    <style name="cusgroupStylecornerRadius_2">
+        <item name="android:background">@drawable/cus_timetable_list</item>
+    </style>
+    <style name="custxtOpenSansHebrewbold15_1">
+        <item name="android:textColor">@color/bluegray_900</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+    </style>
+    <style name="custxtOpenSansHebrewregular15_1">
+        <item name="android:textColor">@color/gray_900</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+    <style name="custxtOpenSansHebrewbold20">
+        <item name="android:textColor">@color/bluegray_900</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
     </style>
 </resources>

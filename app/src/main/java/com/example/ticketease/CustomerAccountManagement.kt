@@ -34,14 +34,10 @@ class CustomerAccountManagement : AppCompatActivity() {
             }
         }
 
-        cusAccManagementBack.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                // Start the CustomerAccountManagement activity
-                val intent = Intent(this@CustomerAccountManagement, CustomerHome::class.java)
-                startActivity(intent)
-            }
-        })
-
+        cusAccManagementBack.setOnClickListener { // Start the CustomerAccountManagement activity
+            val intent = Intent(this@CustomerAccountManagement, CustomerHome::class.java)
+            startActivity(intent)
+        }
 
 
     }

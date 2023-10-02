@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="15dp"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    style="@style/cusgroupStylecornerRadius_2"
+    android:id="@+id/cusTimeTableListLayout">
+
+    <LinearLayout
+        android:id="@+id/cusTimeTableListDetails"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="0.87"
+        android:layout_width="0dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:gravity="start"
+            android:id="@+id/cusTimeTableListVehicleDetails"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.65"
+            android:layout_width="0dp"
+            android:paddingStart="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/cusTimeTableListLocations"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="Colombo - Galle"
+                style="@style/custxtOpenSansHebrewbold15_1" />
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/cusTimeTableListVehicleNo"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="Vehicle No : NA - 9856"
+                style="@style/custxtOpenSansHebrewregular15_1"/>
+        </LinearLayout>
+
+        <TextView
+            android:ellipsize="end"
+            android:id="@+id/cusTimeTableListTime"
+            android:layout_height="match_parent"
+            android:layout_weight="0.35"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="10.15 A.M"
+            style="@style/custxtOpenSansHebrewbold20" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView android:id="@+id/cusTimeTableListBookNow"
+            android:layout_height="38dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="38dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/cus_transport_timetable_book"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="38dp"
+            android:layout_height="wrap_content"
+            android:text="Book"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+</LinearLayout>

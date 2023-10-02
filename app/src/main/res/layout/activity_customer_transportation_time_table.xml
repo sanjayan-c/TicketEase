@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomerTransportationTimeTable"
+    android:background="@drawable/cus_purple">
+
+    <RelativeLayout
+        android:id="@+id/cusTransportationTimeTableHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/cusTransportationTimeTableBack"
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            android:scaleType="fitXY"
+            android:layout_centerVertical="true"
+            tools:ignore="ContentDescription"
+            android:src="@drawable/cus_img_backarrow" />
+
+        <TextView
+            style="@style/custxtOpenSansromanbold20"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="2"
+            android:singleLine="false"
+            android:text="Transportation Timetable"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/cusTransportationTimeTableSelectPart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cusTransportationTimeTableHeading"
+        android:layout_marginTop="50dp" android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/cusTransRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Travel Method"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/custxtInterregular20" />
+                <LinearLayout
+                    android:gravity="start"
+                    android:id="@+id/cusTransMethod"
+                    android:layout_height="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/cus_profile_inputbox_border">
+                    <Spinner
+                        android:id="@+id/cusTransMethodSpinner"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:background="@null" />
+                    <ImageView
+                        android:id="@+id/cusTransMethodSelect"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2"
+                        android:src="@drawable/cus_img_doubledown"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Travel Date"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/custxtInterregular20" />
+            <LinearLayout android:gravity="start"
+                android:id="@+id/cusTransDate"
+                android:layout_height="30dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/cus_profile_inputbox_border">
+                <TextView android:ellipsize="end"
+                    android:id="@+id/cusTransDateText"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:singleLine="true"
+                    android:textSize="18sp"
+                    android:text="Select Date"
+                    android:gravity="center"
+                    style="@style/custxtInterregular20"/>
+                <ImageView
+                    android:id="@+id/cusTransDateSelect"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/cus_calender"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cusTransRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cusTransRow1"
+        android:layout_marginTop="10dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Start place"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/custxtInterregular20" />
+            <LinearLayout android:gravity="start"
+                android:id="@+id/cusTransStart"
+                android:layout_height="30dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/cus_profile_inputbox_border">
+                <Spinner
+                    android:id="@+id/cusTransStartSpinner"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:background="@null" />
+                <ImageView
+                    android:id="@+id/cusTransStartSelect"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/cus_img_doubledown"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="End Place"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/custxtInterregular20" />
+            <LinearLayout android:gravity="start"
+                android:id="@+id/cusTransEnd"
+                android:layout_height="30dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/cus_profile_inputbox_border">
+                <Spinner
+                    android:id="@+id/cusTransEndSpinner"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:background="@null" />
+                <ImageView
+                    android:id="@+id/cusTransEndSelect"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/cus_img_doubledown"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView android:ellipsize="end"
+        android:id="@+id/cusTransSearch"
+        android:layout_below="@+id/cusTransRow2"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:singleLine="true"
+        android:text="Search"
+        style="@style/custxtSolidRoundedOutline"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/cusTransportationTimeTableSelectPart">
+        <androidx.recyclerview.widget.RecyclerView
+            android:gravity="center_horizontal"
+            android:id="@+id/recyclerListCustomerTransport"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            tools:listitem="@layout/customer_transportation_timetable_list"/>
+    </ScrollView>
+</RelativeLayout>

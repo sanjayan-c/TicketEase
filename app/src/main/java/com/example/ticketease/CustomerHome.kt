@@ -13,21 +13,22 @@ class CustomerHome : AppCompatActivity() {
 
         val cusAccountManagement = findViewById<LinearLayout>(R.id.cus_account_management)
         val cusQR = findViewById<LinearLayout>(R.id.cus_qr)
+        val cusBookNow = findViewById<LinearLayout>(R.id.cus_calender)
 
-        cusAccountManagement.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                // Start the CustomerAccountManagement activity
-                val intent = Intent(this@CustomerHome, CustomerAccountManagement::class.java)
-                startActivity(intent)
-            }
-        })
+        cusAccountManagement.setOnClickListener { // Start the CustomerAccountManagement activity
+            val intent = Intent(this@CustomerHome, CustomerAccountManagement::class.java)
+            startActivity(intent)
+        }
 
-        cusQR.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                // Start the CustomerAccountManagement activity
-                val intent = Intent(this@CustomerHome, CustomerQRCode::class.java)
-                startActivity(intent)
-            }
-        })
+        cusQR.setOnClickListener { // Start the CustomerAccountManagement activity
+            val intent = Intent(this@CustomerHome, CustomerQRCode::class.java)
+            startActivity(intent)
+        }
+
+        cusBookNow.setOnClickListener { // Start the CustomerAccountManagement activity
+            val intent = Intent(this@CustomerHome, CustomerTransportationTimeTable::class.java)
+            startActivity(intent)
+        }
+
     }
 }

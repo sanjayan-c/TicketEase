@@ -24,7 +24,7 @@
             android:src="@drawable/cus_img_backarrow" />
 
         <TextView
-            style="@style/txtOpenSansromanbold20"
+            style="@style/custxtOpenSansromanbold20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -85,7 +85,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp">
         <TextView
-            style="@style/txtOpenSansromanbold20"
+            style="@style/custxtOpenSansromanbold20"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="0.3"
@@ -119,7 +119,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp">
         <TextView
-            style="@style/txtOpenSansromanbold20"
+            style="@style/custxtOpenSansromanbold20"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="0.3"
@@ -153,7 +153,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp">
         <TextView
-            style="@style/txtOpenSansromanbold20"
+            style="@style/custxtOpenSansromanbold20"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="0.3"
@@ -187,7 +187,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp">
         <TextView
-            style="@style/txtOpenSansromanbold20"
+            style="@style/custxtOpenSansromanbold20"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="0.3"
@@ -227,7 +227,7 @@
             android:text="Update"
             android:layout_marginEnd="10dp"
             android:textAllCaps="false"
-            style="@style/btnSolidRoundedOutline"/>
+            style="@style/cusbtnSolidRoundedOutline"/>
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
             android:id="@+id/btnCancel"
@@ -237,7 +237,7 @@
             android:text="Cancel"
             android:layout_marginStart="10dp"
             android:textAllCaps="false"
-            style="@style/btnSolidRoundedOutline_1"/>
+            style="@style/cusbtnSolidRoundedOutline_1"/>
     </LinearLayout>
 
 </RelativeLayout>
