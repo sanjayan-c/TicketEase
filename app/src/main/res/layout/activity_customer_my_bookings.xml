@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomerMyBookings"
+    android:background="@drawable/cus_purple">
+
+    <RelativeLayout
+        android:id="@+id/cusMyBookingsHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/cusMyBookingsBack"
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription"
+            android:src="@drawable/cus_img_backarrow" />
+
+        <TextView
+            style="@style/custxtOpenSansromanbold20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="My Bookings"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/cusMyBookingsCustomerName"
+        android:layout_below="@+id/cusMyBookingsHeading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        style="@style/custxtOpenSansromanbold20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="Customer Name"
+        android:textColor="@color/bluegray_101"
+        android:textSize="18dp" />
+    <TextView
+        android:id="@+id/cusMyBookingsCustomerNIC"
+        android:layout_below="@+id/cusMyBookingsCustomerName"
+        android:layout_centerHorizontal="true"
+        style="@style/custxtOpenSansromanbold20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="Customer NIC"
+        android:textColor="@color/bluegray_101"
+        android:textSize="18dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_below="@+id/cusMyBookingsCustomerNIC">
+        <androidx.recyclerview.widget.RecyclerView
+            android:gravity="center_horizontal"
+            android:id="@+id/recyclerListCustomerMyBookings"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            tools:listitem="@layout/customer_my_bookings_list"/>
+    </ScrollView>
+
+</RelativeLayout>

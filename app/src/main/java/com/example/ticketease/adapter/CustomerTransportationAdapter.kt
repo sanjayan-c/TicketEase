@@ -1,25 +1,27 @@
 package com.example.ticketease.adapter
 
 import android.content.Intent
-import com.example.ticketease.TransportationItem
+import android.util.Log
+import com.example.ticketease.data.CustomerTransportationItem
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ticketease.CustomerTransportationBooking
 import com.example.ticketease.R
 
-class TransportationAdapter(private val data: List<TransportationItem>, private val selectedDate: String) :
-    RecyclerView.Adapter<TransportationAdapter.ViewHolder>() {
+class CustomerTransportationAdapter(private val data: List<CustomerTransportationItem>, private val selectedDate: String) :
+    RecyclerView.Adapter<CustomerTransportationAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val locationTextView: TextView = itemView.findViewById(R.id.cusTimeTableListLocations)
         val vehicleNoTextView: TextView = itemView.findViewById(R.id.cusTimeTableListVehicleNo)
         val timeTextView: TextView = itemView.findViewById(R.id.cusTimeTableListTime)
-        val bookNowImageView: ImageView = itemView.findViewById(R.id.cusTimeTableListBookNow)
+        val cusTimeTableListBookNowPart: LinearLayout = itemView.findViewById(R.id.cusTimeTableListBookNowPart)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,7 +36,7 @@ class TransportationAdapter(private val data: List<TransportationItem>, private 
         holder.timeTextView.text = item.time
 
         // Set a click listener for the bookNowImageView
-        holder.bookNowImageView.setOnClickListener {
+        holder.cusTimeTableListBookNowPart.setOnClickListener {
             // Start the new activity here and pass data from the corresponding item
             val context = it.context
             val intent = Intent(context, CustomerTransportationBooking::class.java)
@@ -43,6 +45,8 @@ class TransportationAdapter(private val data: List<TransportationItem>, private 
             intent.putExtra("vehicleNo", item.vehicleNo)
             intent.putExtra("time", item.time)
             intent.putExtra("selectedDate", selectedDate)
+            intent.putExtra("routeNo", item.routeNo)
+            Log.d("routeNo", item.routeNo)
             context.startActivity(intent)
         }
     }

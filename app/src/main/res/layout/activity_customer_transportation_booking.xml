@@ -300,7 +300,34 @@
                     android:layout_weight="0.7"
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
-                    android:text="Departure date"
+                    android:text="Route No"
+                    style="@style/custxtOpenSansHebrewregular15_1"/>
+                <TextView
+                    android:ellipsize="end"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:id="@+id/cusBookingRouteNo"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:singleLine="true"
+                    android:layout_marginBottom="5dp"
+                    android:text="Route No"
+                    style="@style/custxtOpenSansHebrewregular15_1Bold"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:ellipsize="end"
+                    android:textSize="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:singleLine="true"
+                    android:layout_marginBottom="5dp"
+                    android:text="Departure Date"
                     style="@style/custxtOpenSansHebrewregular15_1"/>
                 <TextView
                     android:ellipsize="end"
@@ -327,7 +354,7 @@
                     android:layout_weight="0.7"
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
-                    android:text="Departure time"
+                    android:text="Departure Time"
                     style="@style/custxtOpenSansHebrewregular15_1"/>
                 <TextView
                     android:ellipsize="end"

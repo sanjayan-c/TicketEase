@@ -36,7 +36,7 @@ class CustomerTransportationBooking : AppCompatActivity() {
     private var vehicleNo: String = ""
     private var time: String = ""
     private var selectedDate: String = ""
-
+    private var routeNo: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +59,7 @@ class CustomerTransportationBooking : AppCompatActivity() {
             vehicleNo = extras.getString("vehicleNo", "")
             time = extras.getString("time", "")
             selectedDate = extras.getString("selectedDate", "")
+            routeNo = extras.getString("routeNo","")
             // Set the retrieved data to your TextView elements
             cusBookingStart.text = "$startLocations"
             cusBookingEnd.text = "$endLocations"
@@ -111,6 +112,7 @@ class CustomerTransportationBooking : AppCompatActivity() {
             var cusBookingNoOfPassengers = findViewById<TextView>(R.id.cusBookingNoOfPassengers)
             var cusBookingVehicleNo = findViewById<TextView>(R.id.cusBookingVehicleNo)
             var cusBookingIssuedDate = findViewById<TextView>(R.id.cusBookingIssuedDate)
+            var cusBookingRouteNo = findViewById<TextView>(R.id.cusBookingRouteNo)
             val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // Example format: "yyyy-MM-dd"
             // Get the current date and format it
             val issueDate = sdf.format(Date())
@@ -120,6 +122,7 @@ class CustomerTransportationBooking : AppCompatActivity() {
             cusBookingVehicleNo.text = vehicleNo
             cusBookingNoOfPassengers.text = selectedSeatCount.toString()
             cusBookingIssuedDate.text = issueDate
+            cusBookingRouteNo.text = routeNo
         }
 
         btnCusBookingConfirm=findViewById(R.id.btnCusBookingConfirm)

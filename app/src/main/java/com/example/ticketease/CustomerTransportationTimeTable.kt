@@ -13,7 +13,8 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ticketease.adapter.TransportationAdapter
+import com.example.ticketease.adapter.CustomerTransportationAdapter
+import com.example.ticketease.data.CustomerTransportationItem
 import java.util.Calendar
 
 class CustomerTransportationTimeTable : AppCompatActivity() {
@@ -116,18 +117,18 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
 
         // Transport Time Table
         val sampleData = listOf(
-            TransportationItem("Colombo",  "Galle","NA - 9856", "10.15 A.M"),
-            TransportationItem("Kandy",  "Jaffna","ND - 9556", "1.15 P.M"),
-            TransportationItem("Jaffna",  "Galle","NA - 3216", "4.15 P.M"),
-            TransportationItem("Trincomalee",  "Galle","NA - 6556", "7.15 P.M"),
-            TransportationItem("Jaffna",  "Colombo","NA - 3216", "4.15 P.M"),
-            TransportationItem("Kandy",  "Galle","NA - 6556", "7.15 P.M")
+            CustomerTransportationItem("Colombo",  "Galle","NA - 9856", "10.15 A.M","100"),
+            CustomerTransportationItem("Kandy",  "Jaffna","ND - 9556", "1.15 P.M","17"),
+            CustomerTransportationItem("Jaffna",  "Galle","NA - 3216", "4.15 P.M","430"),
+            CustomerTransportationItem("Trincomalee",  "Galle","NA - 6556", "7.15 P.M","65"),
+            CustomerTransportationItem("Jaffna",  "Colombo","NA - 3216", "4.15 P.M","87"),
+            CustomerTransportationItem("Kandy",  "Galle","NA - 6556", "7.15 P.M","25")
         )
         var cusTransSearch=findViewById<TextView>(R.id.cusTransSearch)
         cusTransSearch.setOnClickListener {
             val recyclerView = findViewById<RecyclerView>(R.id.recyclerListCustomerTransport)
             Log.d("SelectedDate", selectedDate)
-            val adapter = TransportationAdapter(sampleData, selectedDate)
+            val adapter = CustomerTransportationAdapter(sampleData, selectedDate)
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(this)
         }

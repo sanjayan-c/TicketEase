@@ -7,6 +7,57 @@
     tools:context=".CustomerHome"
     android:background="@drawable/cus_purple">
 
+    <RelativeLayout
+        android:id="@+id/cusHomeHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true">
+
+        <!-- FrameLayout containing vector drawable and text -->
+        <FrameLayout
+            android:id="@+id/cusHomeLogoFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <!-- Vector drawable as an ImageView -->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cus_logo_oval" />
+
+            <!-- Text view overlaid on the vector drawable -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="G"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="@color/deep_purple_400"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <!-- "Seat Booking" TextView -->
+        <TextView
+            android:id="@+id/cusHomeLogoFrameName"
+            style="@style/custxtOpenSansromanbold20"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/cusHomeLogoFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="TicketEase"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+    </RelativeLayout>
+
+
     <LinearLayout
         android:id="@+id/linearCard"
         android:layout_width="350dp"

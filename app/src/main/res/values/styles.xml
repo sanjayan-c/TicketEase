@@ -55,4 +55,56 @@
         <item name="android:fontFamily">@font/open_sans_hebrew</item>
         <item name="android:textFontWeight" tools:targetApi="p">700</item>
     </style>
+    <style name="cusgroupStylecornerRadius_1">
+        <item name="android:background">@drawable/cus_my_wallet_frame</item>
+    </style>
+    <style name="custxtOpenSansHebrewbold24">
+        <item name="android:textColor">@color/gray_50</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+    </style>
+    <style name="custxtSolidRounded_1">
+        <item name="android:textColor">@color/gray_50</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+        <item name="android:background">@drawable/cus_my_wallet</item>
+    </style>
+    <style name="custxtOpenSansHebrewbold32">
+        <item name="android:textColor">@color/gray_50</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+    </style>
+    <style name="custxtOpenSansHebrewbold16_1">
+        <item name="android:textColor">@color/gray_50</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+    </style>
+    <style name="cusgroupStylegray_900cornerRadius">
+        <item name="android:background">@drawable/cus_my_wallet_number</item>
+    </style>
+    <style name="custxtOpenSansHebrewregular15">
+        <item name="android:textColor">@color/gray_50</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+    <style name="custxtOpenSansHebrewbold15">
+        <item name="android:textColor">@color/gray_50</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+    </style>
+    <style name="custxtSolidRounded_2">
+        <item name="android:textColor">@color/gray_50</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+        <item name="android:background">@drawable/cus_my_wallet_last_updated</item>
+    </style>
+    <style name="cusgroupStyle_2">
+        <item name="android:background">@drawable/cus_my_wallet_methods_frame</item>
+    </style>
+    <style name="custxtSolidRounded_3">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/open_sans_hebrew</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+        <item name="android:background">@drawable/cus_transactions_cost_frame</item>
+    </style>
 </resources>

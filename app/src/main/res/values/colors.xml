@@ -19,4 +19,9 @@
     <color name="bluegray_900">#280c50</color>
     <color name="gray_900">#280c41</color>
     <color name="bluegray_100_7f">#7fd9d9d9</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="lt_green">#51F161</color>
+    <color name="deep_purple_401">#9855d5</color>
+    <color name="purple_0001">#DBBEFF</color>
+    <color name="black_900_3f">#3f000000</color>
 </resources>
