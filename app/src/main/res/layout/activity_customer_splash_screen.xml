@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomerSplashScreen"
+    android:background="@drawable/cus_splash"
+    android:gravity="center"
+    android:id="@+id/cusSplashScreen"
+    android:animateLayoutChanges="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="10dp">
+        <!-- FrameLayout containing vector drawable and text -->
+        <FrameLayout
+            android:id="@+id/cusSplashFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+            <!-- Vector drawable as an ImageView -->
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@drawable/cus_logo_oval" />
+            <!-- Text view overlaid on the vector drawable -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="G"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textColor="@color/deep_purple_400"
+                android:layout_gravity="center" />
+        </FrameLayout>
+        <!-- "Seat Booking" TextView -->
+        <TextView
+            style="@style/custxtOpenSansromanbold20"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/cusSplashFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="TicketEase"
+            android:textColor="@color/white"
+            android:textSize="42dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:paddingStart="30dp"
+        android:paddingBottom="30dp"
+        android:padding="16dp">
+
+        <!-- Four text views -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full"
+            android:textColor="#FFFFFF"
+            style="@style/custxtOpenSansromanbold20"
+            android:textSize="36dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Sustainable"
+            android:textColor="#FFFFFF"
+            style="@style/custxtOpenSansromanbold20"
+            android:textSize="36dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Ticket"
+            android:textColor="#FFFFFF"
+            style="@style/custxtOpenSansromanbold20"
+            android:textSize="36dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Solution"
+            android:textColor="#FFFFFF"
+            style="@style/custxtOpenSansromanbold20"
+            android:textSize="36dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</FrameLayout>

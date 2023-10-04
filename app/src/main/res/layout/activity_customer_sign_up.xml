@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomerSignUp"
+    android:background="@drawable/cus_splash">
+    <LinearLayout
+        android:id="@+id/cus_signup_as_guest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginEnd="30dp"
+        android:layout_gravity="top|right"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:text="Enter as Guest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cus_img_backarrow"
+            android:rotation="180"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="10dp">
+        <!-- FrameLayout containing vector drawable and text -->
+        <FrameLayout
+            android:id="@+id/cusSplashFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+            <!-- Vector drawable as an ImageView -->
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@drawable/cus_logo_oval" />
+            <!-- Text view overlaid on the vector drawable -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="G"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textColor="@color/deep_purple_400"
+                android:layout_gravity="center" />
+        </FrameLayout>
+        <!-- "Seat Booking" TextView -->
+        <TextView
+            style="@style/custxtOpenSansromanbold20"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/cusSplashFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="TicketEase"
+            android:textColor="@color/white"
+            android:textSize="42dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="@drawable/cus_login_signup_frame"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Sign Up"
+            android:layout_marginBottom="20dp"
+            android:textColor="#FFFFFF"
+            style="@style/custxtOpenSansromanbold20"
+            android:textSize="36dp"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/cus_login_email"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:hint="Email"
+            android:paddingHorizontal="20dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:textColorHint="#000000"
+            android:textColor="#000000"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/cus_splash_buttons" />
+        <EditText
+            android:id="@+id/cus_login_nic"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:hint="NIC"
+            android:paddingHorizontal="20dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:textColorHint="#000000"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cus_splash_buttons" />
+        <LinearLayout
+            android:id="@+id/cus_login_password_frame"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@id/cus_login_nic"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cus_splash_buttons">
+
+            <EditText
+                android:id="@+id/cus_login_password"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:hint="Password"
+                style="@style/NoUnderlineEditTextStyle"
+                android:paddingHorizontal="20dp"
+                android:gravity="center_vertical"
+                android:textColorHint="#000000"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:id="@+id/cusimgPasswordVisibility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/visibility"
+                android:layout_gravity="center"
+                android:contentDescription="Toggle Password Visibility"
+                android:clickable="true"
+                android:layout_alignParentEnd="true"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/cus_login_confirm_password_frame"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@id/cus_login_password_frame"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cus_splash_buttons">
+
+            <EditText
+                android:id="@+id/cus_login_confirm_password"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:hint="Re-enter Password"
+                style="@style/NoUnderlineEditTextStyle"
+                android:paddingHorizontal="20dp"
+                android:gravity="center_vertical"
+                android:textColorHint="#000000"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:id="@+id/cusimgConfirmPasswordVisibility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/visibility"
+                android:layout_gravity="center"
+                android:contentDescription="Toggle Password Visibility"
+                android:clickable="true"
+                android:layout_alignParentEnd="true"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/cus_passwords_not_match"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:text="Passwords not match"
+            android:textColor="@color/red_A700"
+            android:textSize="16dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/cus_signup_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Submit"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/cus_button_update"
+            style="@style/custxtOpenSansromanbold20"
+            android:textSize="18dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@id/cus_text_register"
+            android:textColor="@color/white"
+            android:text="Already have an account?"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/cus_text_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:clickable="true"
+            android:onClick="onRegisterClicked"
+            android:textStyle="bold"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginBottom="30dp"/>
+
+    </LinearLayout>
+
+</FrameLayout>
