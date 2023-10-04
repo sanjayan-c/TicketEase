@@ -185,6 +185,34 @@
                 android:layout_width="match_parent"
                 android:orientation="horizontal">
                 <LinearLayout
+                    android:id="@+id/cusVirtualWalletTopUp"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    style="@style/cusgroupStyle_2">
+                    <ImageView
+                        android:id="@+id/cusVirtualWalletTopUpImage"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/cus_my_wallet_topup"
+                        tools:ignore="ContentDescription"/>
+                    <TextView android:ellipsize="end"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:singleLine="true"
+                        android:text="Top Up"
+                        style="@style/custxtOpenSansHebrewbold15"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
+                <LinearLayout
                     android:id="@+id/cusVirtualWalletTransactions"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
@@ -214,7 +242,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/white" />
                 <LinearLayout
-                    android:id="@+id/cusVirtualWalletTopUp"
+                    android:id="@+id/cusVirtualPendingTransactions"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
@@ -222,19 +250,19 @@
                     android:orientation="vertical"
                     style="@style/cusgroupStyle_2">
                     <ImageView
-                        android:id="@+id/cusVirtualWalletTopUpImage"
+                        android:id="@+id/cusVirtualPendingTransactionsImage"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:scaleType="fitXY"
-                        android:src="@drawable/cus_my_wallet_topup"
+                        android:src="@drawable/cus_my_wallet_pendings"
                         tools:ignore="ContentDescription"/>
                     <TextView android:ellipsize="end"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:singleLine="true"
-                        android:text="Top Up"
+                        android:text="Pendings"
                         style="@style/custxtOpenSansHebrewbold15"/>
                 </LinearLayout>
             </LinearLayout>

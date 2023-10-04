@@ -64,7 +64,7 @@
         android:text="Scan Me!!"
         android:textStyle="bold"
         android:textSize="24sp"
-        android:background="@drawable/cus_blue"
+        android:background="@drawable/cus_purple1"
         android:textColor="#FFFFFF" />
 
 

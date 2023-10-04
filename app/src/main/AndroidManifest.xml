@@ -13,6 +13,21 @@
         android:theme="@style/Theme.TicketEase"
         tools:targetApi="31">
         <activity
+            android:name=".CustomerSignUp"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerLogIn"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerSplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".CustomerVirtualWallet"
             android:exported="false" />
         <activity
@@ -32,13 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".CustomerHome"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

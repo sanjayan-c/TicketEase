@@ -27,7 +27,6 @@
         android:paddingHorizontal="10dp"
         android:orientation="horizontal">
         <LinearLayout android:gravity="start"
-            android:id="@+id/linearColumnmalabecolomb"
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
             android:layout_gravity="center"
