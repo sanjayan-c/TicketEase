@@ -1,3 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="app_name">TicketEase</string>
+    <string name="app_name">ticketeaseuis</string>
+    <string name="loading">Loading?</string>
+    <string name="no_internet_connection">No internet connection!</string>
+    <string name="lbl_usa">USA</string>
+    <string name="lbl_top_up_wallet">Top-up wallet</string>
+    <string name="lbl_my_wallet">My Wallet</string>
+    <string name="msg_2023_06_10_08">2023/06/10 - 08:30AM</string>
+    <string name="lbl_seat_booking">Seat Booking</string>
+    <string name="lbl_passenger_count">Passenger Count</string>
+    <string name="lbl_transactions">Transactions</string>
+    <string name="lbl_bus">Bus</string>
+    <string name="lbl_my_balance">My Balance</string>
+    <string name="lbl_15_15_pm">15:15 PM</string>
+    <string name="lbl_31234568">31234568</string>
+    <string name="msg_5_30_pm_7_00p">5:30 PM - 7.00PM</string>
+    <string name="lbl_a123456789">A123456789</string>
+    <string name="lbl_first_name">First Name</string>
+    <string name="lbl_country">Country</string>
+    <string name="msg_galle_kaduwel"> Galle - Kaduwela</string>
+    <string name="lbl_abc_example_com">abc@example.com</string>
+    <string name="lbl_makubura">Makubura</string>
+    <string name="lbl_12_15_pm">12:15 PM</string>
+    <string name="msg_2023_06_15_14">2023/06/15 - 14:35PM</string>
+    <string name="lbl_log_out">Log Out</string>
+    <string name="lbl_6th_october">6th October</string>
+    <string name="lbl_320_km">320 KM</string>
+    <string name="lbl_560_00">560.00</string>
+    <string name="msg_virtual_card_nu">Virtual Card Number</string>
+    <string name="lbl_galle">Galle</string>
+    <string name="lbl_location">Location</string>
+    <string name="msg_galle_kaduwel2">Galle - kaduwela</string>
+    <string name="lbl_nb2356">NB2356</string>
+    <string name="lbl_8_26_2023">8/26/2023</string>
+    <string name="lbl_500_00_lkr">500.00 LKR</string>
+    <string name="msg_kaduwela_gall">Kaduwela - Galle</string>
+    <string name="lbl_cancel">Cancel</string>
+    <string name="msg_2023_06_15_09">2023/06/15 - 09:55AM</string>
+    <string name="lbl_start_location">Start Location</string>
+    <string name="lbl_time_table">Time Table</string>
+    <string name="lbl_fare_calculator">Fare Calculator</string>
+    <string name="lbl_united_kingdom">United Kingdom</string>
+    <string name="lbl_11_15_am">11:15 AM</string>
+    <string name="msg_security_settig">Security settigns</string>
+    <string name="lbl_qr_code_scanner">QR Code Scanner</string>
+    <string name="msg_vehicle_type_b">Vehicle Type: Bus</string>
+    <string name="msg_remaining_dates">Remaining Dates:</string>
+    <string name="lbl_last_name">Last Name</string>
+    <string name="lbl_travel_method">Travel Method</string>
+    <string name="msg_account_managem">Account Management</string>
+    <string name="lbl_start_place">Start Place</string>
+    <string name="lbl_na_9856">: NA-9856</string>
+    <string name="lbl_75_00">75.00 </string>
+    <string name="lbl_qr_code">QR Code</string>
+    <string name="msg_today_journeys">Today Journeys
+8/28/2023</string>
+    <string name="lbl_journey_history">Journey History</string>
+    <string name="msg_kaduwela_gall2"> Kaduwela - Galle</string>
+    <string name="lbl_tharuka">Tharuka</string>
+    <string name="msg_transportation">Transportation Timetable</string>
+    <string name="msg_1_00_pm_2_30p">1:00 PM - 2.30PM</string>
+    <string name="lbl_time">Time</string>
+    <string name="msg_vehicle_no_nc2">Vehicle No: NC-1365</string>
+    <string name="lbl_2023_06_20">2023/06/20</string>
+    <string name="lbl_password">Password</string>
+    <string name="lbl_8_28_2023">8/28/2023</string>
+    <string name="lbl_6_00am_7_30am"> 6.00am - 7.30am</string>
+    <string name="msg_2023_06_20_10_1">2023/06/20 10.15am
+</string>
+    <string name="lbl_end_place">End Place</string>
+    <string name="lbl_wellawaya">Wellawaya</string>
+    <string name="lbl_r23_r24_r25"> R23 , R24, R25
+</string>
+    <string name="msg_vehicle_no_na">Vehicle No: NA-9856</string>
+    <string name="lbl_10_15_am">10:15 AM</string>
+    <string name="msg_vehicle_no_nb">Vehicle No: NB-9856</string>
+    <string name="msg_vehicle_no_nc">Vehicle No: NC-1543</string>
+    <string name="lbl_nic_passport">NIC/Passport</string>
+    <string name="msg_vehicle_no_nd">Vehicle No: ND-4913</string>
+    <string name="lbl_vehicle_no">Vehicle No:</string>
+    <string name="msg_3_15_pm_5_00p">3:15 PM - 5:00PM</string>
+    <string name="lbl_tharuka_nisal">Tharuka Nisal</string>
+    <string name="msg_10_15_am_12_0">10:15 AM - 12.00PM</string>
+    <string name="msg_no_of_passenger">No of Passengers - 52
+Total Income - Rs. 47320.00</string>
+    <string name="msg_malabe_colomb">Malabe - Colombo</string>
+    <string name="msg_vehicle_no_nb2">Vehicle No: NB-1685</string>
+    <string name="msg_mon_tue_w">Mon    Tue    Wed    Thu    Fri   Sat   Sun</string>
+    <string name="lbl_ella">Ella</string>
+    <string name="lbl_virtual_wallet">Virtual Wallet</string>
+    <string name="msg_11_00am_12_30"> 11.00am - 12.30pm</string>
+    <string name="msg_current_locatio">Current Location</string>
+    <string name="lbl_wallet">Wallet</string>
+    <string name="msg_makubura_gal">Makubura  - Galle</string>
+    <string name="lbl_confirm_pay">Confirm &amp; Pay</string>
+    <string name="msg_account_balance">Account Balance:</string>
+    <string name="lbl_trip_planner">Trip Planner</string>
+    <string name="msg_last_updated">Last Updated : 14:25 pm</string>
+    <string name="msg_transport_metho">Transport Method</string>
+    <string name="lbl_3_00pm_4_30pm"> 3.00pm - 4.30pm</string>
+    <string name="lbl_my_qr_code">My QR Code</string>
+    <string name="lbl_total_distance">Total Distance</string>
+    <string name="lbl_today_journeys">Today Journeys
+</string>
+    <string name="msg_vehicle_no_na2">Vehicle No: NA-5943</string>
+    <string name="lbl_name">Name</string>
+    <string name="lbl_lkr">LKR</string>
+    <string name="lbl_top_up">Top-Up</string>
+    <string name="lbl_destinations">Destinations</string>
+    <string name="lbl_srilanka">Srilanka </string>
+    <string name="lbl">******</string>
+    <string name="lbl_10_15_am2">10.15 AM</string>
+    <string name="lbl_5000_lkr">5000 LKR</string>
+    <string name="lbl_pendings">Pendings</string>
+    <string name="lbl_13_15_pm">13:15 PM</string>
+    <string name="msg_no_of_passenger3">No of Passengers - 3
+Total Fee - Rs. 3300.00
+NIC - 95XXXXXXXXXv
+Departure Date &amp; Time - </string>
+    <string name="msg_qr_code_verifie">QR Code Verified</string>
+    <string name="lbl_vehicle_no2">Vehicle No</string>
+    <string name="msg_estimated_trave">Estimated Travel Fares :  1500 LKR</string>
+    <string name="msg_no_of_passenger2">No of Passengers - 3
+Total Fee - Rs. 3300.00
+NIC - 95XXXXXXXXXv
+Departure Date &amp; Time - 2023/06/20 10.15am
+Start - Makubura
+End - Galle
+Issued date - 2023/06/15
+Seat Numvers - R23 , R24, R25
+Vehicle No: NA-9856</string>
+    <string name="lbl_30_days_left">30 Days Left</string>
+    <string name="lbl_email">Email</string>
+    <string name="lbl_search">Search</string>
+    <string name="msg_start_makubur">Start - Makubura
+End - Galle
+Issued date - 2023/06/15
+Seat Numvers -</string>
+    <string name="lbl_3">3</string>
+    <string name="lbl_scanning">Scanning...</string>
+    <string name="lbl_75_00_lkr">75.00 LKR</string>
+    <string name="lbl_john_doe">John Doe</string>
+    <string name="lbl_verified">Verified</string>
+    <string name="msg_colombo_malab">Colombo - Malabe</string>
+    <string name="msg_lc4596xxxxxxxxx">LC4596XXXXXXXXXXXXXXXXX</string>
+    <string name="msg_last_login_27">Last login: 27 August, 8:45PM</string>
+    <string name="lbl_8_27_2023">8/27/2023</string>
+    <string name="msg_inspector_id">Inspector ID : IS823</string>
+    <string name="msg_ref_no_tn565xx">Ref No: TN565XXXXX</string>
+    <string name="lbl_travel_date">Travel Date</string>
+    <string name="lbl_vehicle_type">Vehicle Type </string>
+    <string name="lbl_passport_number">Passport Number</string>
+    <string name="msg_inspector_id_b">Inspector ID: B823</string>
+    <string name="lbl_update">Update</string>
+    <string name="lbl_nisal">Nisal</string>
+    <string name="msg_wackwella_road">Wackwella Road, Galle</string>
+    <string name="lbl_2_00pm_3_30pm"> 2.00pm - 3.30pm</string>
+    <string name="lbl_500_00">500.00</string>
+    <string name="lbl_leaving_date">Leaving Date</string>
+    <string name="lbl_3_40_pm">3:40 PM</string>
+    <string name="msg_makubura_gall">Makubura - Galle</string>
+    <string name="msg_this_contact_has_no_phone_nu">This contact has no phone number</string>
+    <string name="msg_camera_storage_permission">This Application need permission\n1.Camera permission to capture the image.\n2.Storage Access permission to save the captured image.</string>
+    <string name="lbl_camera">Camera</string>
+    <string name="lbl_gallery">Gallery</string>
 </resources>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cus_purple">
+
+    <RelativeLayout
+        android:id="@+id/cusHomeHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true">
+
+        <!-- FrameLayout containing vector drawable and text -->
+        <FrameLayout
+            android:id="@+id/cusHomeLogoFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <!-- Vector drawable as an ImageView -->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cus_logo_oval" />
+
+            <!-- Text view overlaid on the vector drawable -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="G"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="@color/deep_purple_400"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <!-- "Seat Booking" TextView -->
+        <TextView
+            android:id="@+id/cusHomeLogoFrameName"
+            style="@style/custxtOpenSansromanbold20"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/cusHomeLogoFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="TicketEase"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearCard"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp">
+
+        <FrameLayout
+            android:id="@+id/profileFrame1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.7"
+            android:background="@drawable/cus_purple1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/cusProfileImage"
+                    android:layout_width="113dp"
+                    android:layout_height="117dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="41dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="44dp"
+                    android:layout_marginBottom="71dp"
+                    android:contentDescription="Profile Image"
+                    android:src="@drawable/cus_profile_img" />
+
+                <TextView
+                    android:id="@+id/textViewBelowImage"
+                    android:layout_width="114dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="41dp"
+                    android:layout_marginTop="141dp"
+                    android:layout_marginEnd="43dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="Customer Name"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/textViewBelowImage2"
+                    android:layout_width="54dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginTop="165dp"
+                    android:layout_marginEnd="72dp"
+                    android:layout_marginBottom="17dp"
+                    android:text="@string/lbl_country"
+                    android:textColor="@color/white" /> <!-- Customize text appearance as needed -->
+            </RelativeLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/profileFrame2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.3"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp">
+            <FrameLayout
+                android:id="@+id/profileFrame3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/cus_blue">
+
+                <RelativeLayout
+                    android:layout_width="161dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/cusAccBal1"
+                        android:layout_width="109dp"
+                        android:layout_height="21dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginTop="42dp"
+                        android:layout_marginBottom="127dp"
+                        android:text="@string/msg_inspector_id"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/cusAccBal2"
+                        android:layout_width="109dp"
+                        android:layout_height="21dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="99dp"
+                        android:layout_marginBottom="70dp"
+                        android:text="@string/lbl_vehicle_no"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/cusAccBal3"
+                        android:layout_width="109dp"
+                        android:layout_height="21dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginTop="69dp"
+                        android:layout_marginBottom="100dp"
+                        android:text="@string/lbl_vehicle_type"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+            </FrameLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearCustomerHomeDetails"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="335dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/Ins_Acc_Management"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/cus_purple1"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/cus_image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:text="Account Management"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Ins_Timetable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/cus_purple1"
+            android:orientation="horizontal"
+            android:padding="10dp">>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/cus_calender" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:text="@string/lbl_time_table"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Ins_JourneyHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/cus_purple1"
+            android:orientation="horizontal"
+            android:padding="10dp">>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/cus_bookings" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:text="@string/lbl_journey_history"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/cus_purple1"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/cus_settings" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:text="@string/lbl_log_out"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

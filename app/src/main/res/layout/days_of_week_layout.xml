@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- days_of_week_layout.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <!-- Add TextViews for each day (Monday to Sunday) -->
+    <TextView
+        android:id="@+id/dayMon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Mon"
+        android:textColor="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/day_selector"/>
+
+    <TextView
+        android:id="@+id/dayTue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Tue"
+        android:textColor="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/day_selector"/>
+
+    <TextView
+        android:id="@+id/dayWed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Wed"
+        android:textColor="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/day_selector"/>
+
+    <TextView
+        android:id="@+id/dayThur"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Thur"
+        android:textColor="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/day_selector"/>
+
+    <TextView
+        android:id="@+id/dayFri"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Fri"
+        android:textColor="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/day_selector"/>
+
+    <TextView
+        android:id="@+id/daySat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Sat"
+        android:textColor="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/day_selector"/>
+
+    <TextView
+        android:id="@+id/daySun"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Sun"
+        android:textColor="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/day_selector"/>
+
+
+    <!-- Add TextViews for Tuesday to Sunday similarly -->
+
+</LinearLayout>
+
+

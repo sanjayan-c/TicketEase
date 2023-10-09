@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--&lt;!&ndash; day_selector.xml &ndash;&gt;-->
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    &lt;!&ndash; Selected state &ndash;&gt;-->
+<!--    <item android:state_pressed="true" android:drawable="@drawable/cus_purple1" />-->
+<!--    <item android:state_focused="true" android:drawable="@drawable/cus_purple1" />-->
+<!--    &lt;!&ndash; Default state &ndash;&gt;-->
+<!--    <item android:drawable="@android:color/transparent" />-->
+<!--</selector>-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:drawable="@drawable/cus_purple1" android:state_pressed="true" />
+<item android:drawable="@drawable/cus_purple1" android:state_focused="true" />
+<item android:drawable="@drawable/cus_purple1" android:state_selected="true" />
+<item android:drawable="@android:color/transparent" />
+</selector>
