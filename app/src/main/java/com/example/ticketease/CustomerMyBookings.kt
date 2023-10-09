@@ -4,10 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ticketease.adapter.CustomerMyBookingsAdapter
 import com.example.ticketease.data.CustomerMyBookingsItem
+import com.example.ticketease.data.ImageDataSingleton
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -15,6 +17,8 @@ import java.util.Locale
 class CustomerMyBookings : AppCompatActivity() {
 
     private lateinit var cusMyBookingsBack : ImageView
+    private lateinit var cusMyBookingsCustomerName : TextView
+    private lateinit var cusMyBookingsCustomerNIC : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +27,15 @@ class CustomerMyBookings : AppCompatActivity() {
         cusMyBookingsBack = findViewById(R.id.cusMyBookingsBack)
 
         cusMyBookingsBack.setOnClickListener { // Start the CustomerAccountManagement activity
-            val intent = Intent(this@CustomerMyBookings, CustomerHome::class.java)
-            startActivity(intent)
+            finish()
         }
+
+        cusMyBookingsCustomerName = findViewById(R.id.cusMyBookingsCustomerName)
+        cusMyBookingsCustomerNIC = findViewById(R.id.cusMyBookingsCustomerNIC)
+
+        cusMyBookingsCustomerName.text= ImageDataSingleton.firstName +" "+ImageDataSingleton.lasttName
+        cusMyBookingsCustomerNIC.text = ImageDataSingleton.nic
+
 
         // Transport Time Table
             val sampleCusMyBookingsData = listOf(

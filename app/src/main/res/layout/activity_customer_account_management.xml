@@ -100,7 +100,7 @@
             android:layout_height="40dp"
             android:layout_width="0dp"
             android:layout_weight="0.7"
-            android:hint="Albert"
+            android:hint="Your First Name"
             android:textSize="18sp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
@@ -134,7 +134,7 @@
             android:layout_height="40dp"
             android:layout_width="0dp"
             android:layout_weight="0.7"
-            android:hint="Johnson"
+            android:hint="Your Last Name"
             android:textSize="18sp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
@@ -162,7 +162,7 @@
             android:text="NIC"
             android:textSize="18sp"
             android:gravity="center_vertical"/>
-        <EditText
+        <TextView
             android:background="@drawable/cus_profile_inputbox_border"
             android:id="@+id/viewInputNIC"
             android:layout_height="40dp"
@@ -174,6 +174,7 @@
             android:paddingEnd="15dp"
             android:textColorHint="@color/white"
             android:inputType="text"
+            android:gravity="center_vertical"
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
@@ -196,7 +197,7 @@
             android:text="Gmail"
             android:textSize="18sp"
             android:gravity="center_vertical"/>
-        <EditText
+        <TextView
             android:background="@drawable/cus_profile_inputbox_border"
             android:id="@+id/viewInputGmail"
             android:layout_height="40dp"
@@ -208,6 +209,7 @@
             android:paddingEnd="15dp"
             android:textColorHint="@color/white"
             android:inputType="text"
+            android:gravity="center_vertical"
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
@@ -239,5 +241,19 @@
             android:textAllCaps="false"
             style="@style/cusbtnSolidRoundedOutline_1"/>
     </LinearLayout>
-
+    <!-- Add a ProgressBar for the loading screen -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="#80000000"
+        android:id="@+id/loadingAccManProgressBarLayout">
+    <ProgressBar
+        android:id="@+id/loadingAccManProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true" />
+    </FrameLayout>
 </RelativeLayout>

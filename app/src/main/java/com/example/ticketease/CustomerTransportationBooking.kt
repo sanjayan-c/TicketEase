@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import com.example.ticketease.data.ImageDataSingleton
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -116,6 +117,8 @@ class CustomerTransportationBooking : AppCompatActivity() {
             val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // Example format: "yyyy-MM-dd"
             // Get the current date and format it
             val issueDate = sdf.format(Date())
+            cusBookingCustomerName.text = ImageDataSingleton.firstName+" "+ImageDataSingleton.lasttName
+            cusBookingCustomerNIC.text = ImageDataSingleton.nic
             cusBookingRoute.text = "$startLocations - $endLocations"
             cusBookingDepartureDate.text = selectedDate
             cusBookingDepartureTime.text = time

@@ -238,18 +238,62 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_below="@+id/cusTransportationTimeTableSelectPart">
-        <androidx.recyclerview.widget.RecyclerView
-            android:gravity="center_horizontal"
-            android:id="@+id/recyclerListCustomerTransport"
-            android:layout_height="wrap_content"
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            tools:listitem="@layout/customer_transportation_timetable_list"/>
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- RecyclerView for displaying data -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerListCustomerTransport"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    tools:listitem="@layout/customer_transportation_timetable_list" />
+
+            </FrameLayout>
+        </ScrollView>
+
+        <!-- Full-screen FrameLayout for progress bar -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="#80000000"
+            android:id="@+id/loadingCusTTProgressBarLayout"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp">
+            <TextView
+                android:id="@+id/loadingCusTTNoText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Nothing to show"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="gone"
+                android:gravity="center" />
+            <ProgressBar
+                android:id="@+id/loadingCusTTProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_centerInParent="true" />
+        </FrameLayout>
+    </RelativeLayout>
+
+
+
 </RelativeLayout>

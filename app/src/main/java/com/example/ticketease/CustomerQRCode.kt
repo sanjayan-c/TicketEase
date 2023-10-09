@@ -15,8 +15,7 @@ class CustomerQRCode : AppCompatActivity() {
         val cusQRBack = findViewById<ImageView>(R.id.cusQRBack)
 
         cusQRBack.setOnClickListener { // Start the CustomerAccountManagement activity
-            val intent = Intent(this@CustomerQRCode, CustomerHome::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

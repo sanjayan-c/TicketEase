@@ -31,8 +31,7 @@ class CustomerVirtualWallet : AppCompatActivity() {
         cusVirtualWalletBack = findViewById(R.id.cusVirtualWalletBack)
 
         cusVirtualWalletBack.setOnClickListener { // Start the CustomerAccountManagement activity
-            val intent = Intent(this@CustomerVirtualWallet, CustomerHome::class.java)
-            startActivity(intent)
+            finish()
         }
 
         cusVirtualWalletTransactions = findViewById(R.id.cusVirtualWalletTransactions)

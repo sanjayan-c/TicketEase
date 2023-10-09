@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CustomerHome"
+    android:id="@+id/cushomeLayout"
     android:background="@drawable/cus_purple">
 
     <RelativeLayout
@@ -89,7 +90,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/cusProfileImage"
                     android:layout_centerHorizontal="true"
-                    android:text="Customer Name"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/white" /> <!-- Customize text appearance as needed -->
             </RelativeLayout>

@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ticketease.CustomerTransportationBooking
 import com.example.ticketease.R
+import com.google.firebase.auth.FirebaseAuth
 
 class CustomerTransportationAdapter(private val data: List<CustomerTransportationItem>, private val selectedDate: String) :
     RecyclerView.Adapter<CustomerTransportationAdapter.ViewHolder>() {
@@ -34,7 +35,9 @@ class CustomerTransportationAdapter(private val data: List<CustomerTransportatio
         holder.locationTextView.text = item.startLocations+"-"+item.endLocations
         holder.vehicleNoTextView.text = "Vehicle No : "+item.vehicleNo
         holder.timeTextView.text = item.time
-
+        if(FirebaseAuth.getInstance().currentUser != null) {
+            holder.cusTimeTableListBookNowPart.visibility = View.VISIBLE
+        }
         // Set a click listener for the bookNowImageView
         holder.cusTimeTableListBookNowPart.setOnClickListener {
             // Start the new activity here and pass data from the corresponding item

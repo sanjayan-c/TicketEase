@@ -15,6 +15,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.example.ticketease.data.Traveller
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import java.sql.SQLException
 
 class CustomerSignUp : AppCompatActivity() {
 
@@ -28,11 +34,13 @@ class CustomerSignUp : AppCompatActivity() {
     private lateinit var pwdVisible: ImageView
     private lateinit var confirmpwdVisible: ImageView
     private lateinit var guestLogin: LinearLayout
-
+    private lateinit var userAuth: FirebaseAuth
+    private lateinit var userDbRef: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_sign_up)
 
+        userAuth=FirebaseAuth.getInstance()
         cusEdtEmail=findViewById(R.id.cus_login_email)
         cusEdtNic=findViewById(R.id.cus_login_nic)
         cusEdtPassword=findViewById(R.id.cus_login_password)
@@ -79,17 +87,14 @@ class CustomerSignUp : AppCompatActivity() {
         }
 
         cusBtnLSignUp.setOnClickListener{
-            //val name = edtName.text.toString()
-//            val email=edtEmail.text.toString()
-//            val password=edtPassword.text.toString()
-//            signUp(name,email,password)
             val password = cusEdtPassword.text.toString()
             val confirmPassword = cusConfirmEdtPassword.text.toString()
 
             if (password == confirmPassword) {
-                // Passwords match, proceed with login
-                val intent = Intent(this, CustomerHome::class.java)
-                startActivity(intent)
+                val nic = cusEdtNic.text.toString()
+                val email=cusEdtEmail.text.toString()
+                val password=cusEdtPassword.text.toString()
+                signUp(nic,email,password)
             } else {
                 // Passwords do not match, show an error message
                 passwordsNotMatch.visibility = View.VISIBLE
@@ -97,6 +102,7 @@ class CustomerSignUp : AppCompatActivity() {
         }
 
         guestLogin.setOnClickListener{
+            userAuth.signOut()
             val intent=Intent(this,CustomerHome::class.java)
             startActivity(intent)
         }
@@ -104,29 +110,63 @@ class CustomerSignUp : AppCompatActivity() {
 
     }
 
-//
-//    private fun signUp(name:String,email:String,password:String){
-//        userAuth.createUserWithEmailAndPassword(email, password)
-//            .addOnCompleteListener(this) { task ->
-//                if (task.isSuccessful) {
-//                    // Sign in success, update UI with the signed-in user's information
-//                    Log.d(ContentValues.TAG, "createUserWithEmail:success")
-//                    addUserToDatabase(name,email,userAuth.currentUser?.uid!!,"user" )
-//                    //navigate to home
-//                    val intent= Intent(this@SignUp,UserActivity::class.java)
-//                    finish()
-//                    startActivity(intent)
-//                } else {
-//                    // If sign in fails, display a message to the user.
-//                    Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
-//                    Toast.makeText(this@SignUp,"Some error has occured", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//    }
-//
-//    private fun addUserToDatabase(name:String,email:String,uid:String,type:String){
-//        userDbRef= FirebaseDatabase.getInstance().getReference()
-//        userDbRef.child("user").child(uid).setValue(User(name, email, uid,type))
-//    }
-//
+
+    private fun signUp(nic:String,email:String,password:String){
+        userAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(ContentValues.TAG, "createUserWithEmail:success")
+                    addUserToDatabase(nic,email,userAuth.currentUser?.uid!!,"user" )
+                    addUserToSqlDatabase(nic, email, userAuth.currentUser?.uid!!)
+                    //navigate to home
+                    val intent= Intent(this@CustomerSignUp,CustomerHome::class.java)
+                    finish()
+                    startActivity(intent)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(this@CustomerSignUp,"Some error has occured", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun addUserToDatabase(nic:String,email:String,uid:String,type:String){
+        userDbRef= FirebaseDatabase.getInstance().getReference()
+        userDbRef.child("customer").child(uid).setValue(Traveller(nic, email, uid,type))
+    }
+
+    private fun addUserToSqlDatabase(nic: String, email: String, uid: String) {
+        val cusConSQL = CusConSQL()
+        cusConSQL.conclass { connection ->
+            if (connection != null) {
+                try {
+                    val query = "INSERT INTO customer (cusNic, cusFirstName, cusLastName, cusGmail, cusId) " +
+                            "VALUES (?, ?, ?, ?, ?)"
+
+                    val preparedStatement = connection.prepareStatement(query)
+                    preparedStatement.setString(1, nic)
+                    preparedStatement.setNull(2, java.sql.Types.VARCHAR) // cusFirstName
+                    preparedStatement.setNull(3, java.sql.Types.VARCHAR) // cusLastName
+                    preparedStatement.setString(4, email)
+                    preparedStatement.setString(5, uid)
+
+                    // Execute the prepared statement
+                    preparedStatement.executeUpdate()
+
+                    // Close the prepared statement
+                    preparedStatement.close()
+                } catch (e: SQLException) {
+                    Log.e("addUserToDatabase", "SQL Exception: ${e.message}")
+                    e.printStackTrace()
+                }
+            } else {
+                Log.e("addUserToDatabase", "Database connection is null")
+            }
+        }
+    }
+
+
+
+
 }

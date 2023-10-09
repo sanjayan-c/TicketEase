@@ -29,3 +29,17 @@ data class CustomerTransactions(
     val price: String,
     val isTopUp: Boolean
 )
+
+data class Traveller(
+    val nic: String,
+    val email: String,
+    val uid : String,
+    val type : String
+)
+
+object ImageDataSingleton {
+    var nic: String? = null
+    var firstName: String? = null
+    var lasttName: String? = null
+    var imageData: String? = null // This variable will hold the image data as a Base64-encoded string
+}

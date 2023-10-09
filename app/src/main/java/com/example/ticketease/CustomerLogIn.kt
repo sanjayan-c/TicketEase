@@ -15,6 +15,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+
 
 class CustomerLogIn : AppCompatActivity() {
 
@@ -24,11 +26,12 @@ class CustomerLogIn : AppCompatActivity() {
     private lateinit var cusBtnRegister: TextView
     private lateinit var pwdVisible: ImageView
     private lateinit var guestLogin: LinearLayout
-
+    private lateinit var userAuth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_log_in)
 
+        userAuth=FirebaseAuth.getInstance()
         cusEdtEmail=findViewById(R.id.cus_login_email)
         cusEdtPassword=findViewById(R.id.cus_login_password)
         cusBtnLogin=findViewById(R.id.cus_login_button)
@@ -56,9 +59,7 @@ class CustomerLogIn : AppCompatActivity() {
         cusBtnLogin.setOnClickListener{
             val email=cusEdtEmail.text.toString()
             val password=cusEdtPassword.text.toString()
-            //login(email,password)
-            val intent=Intent(this,CustomerHome::class.java)
-            startActivity(intent)
+            login(email,password)
         }
 
         cusBtnRegister.setOnClickListener{
@@ -67,25 +68,26 @@ class CustomerLogIn : AppCompatActivity() {
         }
 
         guestLogin.setOnClickListener{
+            userAuth.signOut()
             val intent=Intent(this,CustomerHome::class.java)
             startActivity(intent)
         }
 
 
     }
-//    private fun login(email:String,password:String){
-//        userAuth.signInWithEmailAndPassword(email, password)
-//            .addOnCompleteListener(this) { task ->
-//                if (task.isSuccessful) {
-//                    //logging in
-//                    val intent= Intent(this@Login,UserActivity::class.java)
-//                    finish()
-//                    startActivity(intent)
-//                } else {
-//                    // If sign in fails, display a message to the user.
-//                    Log.w(ContentValues.TAG, "signInWithEmail:failure", task.exception)
-//                    Toast.makeText(this@Login, "Incorrect Username or Password", Toast.LENGTH_SHORT,).show()
-//                }
-//            }
-//    }
+    private fun login(email:String,password:String){
+        userAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    //logging in
+                    val intent= Intent(this@CustomerLogIn,CustomerHome::class.java)
+                    finish()
+                    startActivity(intent)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(ContentValues.TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(this@CustomerLogIn, "Incorrect Username or Password", Toast.LENGTH_SHORT,).show()
+                }
+            }
+    }
 }

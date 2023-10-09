@@ -44,7 +44,6 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="Customer Name"
         android:textColor="@color/bluegray_101"
         android:textSize="18dp" />
     <TextView
@@ -56,7 +55,6 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="Customer NIC"
         android:textColor="@color/bluegray_101"
         android:textSize="18dp" />
 
