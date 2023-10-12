@@ -91,8 +91,8 @@
                 android:textSize="16dp"
                 android:id="@+id/cusMyBookingVehicleNo"
                 android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
+                android:layout_width="wrap_content"
+                android:gravity="end"
                 android:singleLine="true"
                 android:layout_marginBottom="5dp"
                 android:text="Vehicle No"
@@ -118,6 +118,7 @@
                 android:id="@+id/cusMyBookingRouteNo"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
+                android:gravity="end"
                 android:layout_weight="0.3"
                 android:singleLine="true"
                 android:layout_marginBottom="5dp"
@@ -143,6 +144,7 @@
                 android:textSize="16dp"
                 android:id="@+id/cusMyBookingNoOfPassengers"
                 android:layout_height="wrap_content"
+                android:gravity="end"
                 android:layout_width="0dp"
                 android:layout_weight="0.3"
                 android:singleLine="true"
@@ -169,6 +171,7 @@
                 android:textSize="16dp"
                 android:id="@+id/cusMyBookingSeatNo"
                 android:layout_height="wrap_content"
+                android:gravity="end"
                 android:layout_width="0dp"
                 android:layout_weight="0.3"
                 android:singleLine="true"
@@ -196,6 +199,7 @@
                     android:ellipsize="end"
                     android:textSize="16dp"
                     android:id="@+id/cusMyBookingDistance"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="0.3"
@@ -225,6 +229,7 @@
                     android:textSize="16dp"
                     android:id="@+id/cusMyBookingCost"
                     android:layout_height="wrap_content"
+                    android:gravity="end"
                     android:layout_width="0dp"
                     android:layout_weight="0.3"
                     android:singleLine="true"
@@ -233,7 +238,6 @@
                     style="@style/custxtOpenSansHebrewregular15_1Bold"/>
             </LinearLayout>
         <LinearLayout
-            android:id="@+id/cusMyBookingArrows"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -252,6 +256,7 @@
                 android:textSize="16dp"
                 android:id="@+id/cusMyBookingIssuedDate"
                 android:layout_height="wrap_content"
+                android:gravity="end"
                 android:layout_width="0dp"
                 android:layout_weight="0.3"
                 android:singleLine="true"
@@ -259,6 +264,33 @@
                 android:text="Date"
                 style="@style/custxtOpenSansHebrewregular15_1Bold"/>
         </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:ellipsize="end"
+                    android:textSize="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:singleLine="true"
+                    android:layout_marginBottom="5dp"
+                    android:text="Issued Time"
+                    style="@style/custxtOpenSansHebrewregular15_1"/>
+                <TextView
+                    android:ellipsize="end"
+                    android:textSize="16dp"
+                    android:id="@+id/cusMyBookingIssuedTime"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:singleLine="true"
+                    android:layout_marginBottom="5dp"
+                    android:text="Date"
+                    style="@style/custxtOpenSansHebrewregular15_1Bold"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

@@ -16,6 +16,8 @@ import com.example.ticketease.data.ImageDataSingleton
 import com.google.firebase.auth.FirebaseAuth
 import java.sql.Connection
 import java.sql.SQLException
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class CustomerHome : AppCompatActivity() {
 
@@ -37,11 +39,15 @@ class CustomerHome : AppCompatActivity() {
 
         userAuth= FirebaseAuth.getInstance()
 
-        if (userAuth.currentUser != null) {2
+        if (userAuth.currentUser != null) {
             val cusConSQL = CusConSQL()
             cusConSQL.conclass { connection ->
                 if (connection != null) {
                     // Database connection successful, perform operations
+                    val (currentDate, currentTime) = getCurrentDateTime()
+                    println("Current Date: $currentDate")
+                    println("Current Time: $currentTime")
+
                     // Your SQL query to fetch customer details
                     val user = userAuth.currentUser?.uid ?: ""
                     val query = "SELECT * FROM customer WHERE cusId = '$user'"
@@ -182,6 +188,9 @@ class CustomerHome : AppCompatActivity() {
                     } catch (e: SQLException) {
                         Log.e("SQL Error", "SQL Exception: " + e.message)
                         e.printStackTrace()
+                    }finally {
+                        // Close the connection in the finally block to ensure it's always closed
+                        connection.close()
                     }
                 } else {
                     // Handle connection error
@@ -224,5 +233,13 @@ class CustomerHome : AppCompatActivity() {
             cusProfileImage = findViewById(R.id.cusProfileImage)
             textViewBelowImage = findViewById(R.id.textViewBelowImage)
         }
+    }
+    fun getCurrentDateTime(): Pair<String, String> {
+        val currentDateTime = LocalDateTime.now()
+        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+        val currentDate = currentDateTime.format(dateFormatter)
+        val currentTime = currentDateTime.format(timeFormatter)
+        return Pair(currentDate, currentTime)
     }
 }

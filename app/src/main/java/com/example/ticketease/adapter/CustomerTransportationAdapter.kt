@@ -43,6 +43,8 @@ class CustomerTransportationAdapter(private val data: List<CustomerTransportatio
             // Start the new activity here and pass data from the corresponding item
             val context = it.context
             val intent = Intent(context, CustomerTransportationBooking::class.java)
+            intent.putExtra("vehicleType", item.vehicelType)
+            intent.putExtra("scheduleId", item.scheduleId)
             intent.putExtra("startLocations", item.startLocations)
             intent.putExtra("endLocations", item.endLocations)
             intent.putExtra("vehicleNo", item.vehicleNo)
@@ -50,6 +52,7 @@ class CustomerTransportationAdapter(private val data: List<CustomerTransportatio
             intent.putExtra("selectedDate", selectedDate)
             intent.putExtra("routeNo", item.routeNo)
             Log.d("routeNo", item.routeNo)
+            Log.d("vehicleType",  item.vehicelType)
             context.startActivity(intent)
         }
     }

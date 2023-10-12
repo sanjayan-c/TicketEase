@@ -1,11 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cusFragmentTransactionsRecyclerView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:listitem="@layout/customer_transactions_list"
-    tools:context=".fragment.CustomerTransactionsFragment">
-</androidx.recyclerview.widget.RecyclerView>
+    android:orientation="vertical">
+
+    <!-- RecyclerView for displaying data -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cusFragmentTransactionsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        tools:listitem="@layout/customer_transactions_list"
+        tools:context=".fragment.CustomerTransactionsFragment" />
+
+    <!-- Loading ProgressBar and TextView -->
+    <FrameLayout
+        android:id="@+id/cusFragmentTransactionsProgressBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="#80000000"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/cusFragmentTransactionsProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/cusFragmentTransactionsNoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Transactions"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+</RelativeLayout>

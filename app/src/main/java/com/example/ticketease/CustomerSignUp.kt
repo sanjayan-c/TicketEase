@@ -11,8 +11,10 @@ import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.example.ticketease.data.Traveller
@@ -36,6 +38,7 @@ class CustomerSignUp : AppCompatActivity() {
     private lateinit var guestLogin: LinearLayout
     private lateinit var userAuth: FirebaseAuth
     private lateinit var userDbRef: DatabaseReference
+    private lateinit var cus_signup_ProgressBarLayout: FrameLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_sign_up)
@@ -51,6 +54,8 @@ class CustomerSignUp : AppCompatActivity() {
         confirmpwdVisible=findViewById(R.id.cusimgConfirmPasswordVisibility)
         passwordsNotMatch=findViewById(R.id.cus_passwords_not_match)
         guestLogin=findViewById(R.id.cus_signup_as_guest)
+        cus_signup_ProgressBarLayout=findViewById(R.id.cus_signup_ProgressBarLayout)
+
 
         val registerString = "Login"
         val mSpannableString = SpannableString(registerString)
@@ -91,6 +96,11 @@ class CustomerSignUp : AppCompatActivity() {
             val confirmPassword = cusConfirmEdtPassword.text.toString()
 
             if (password == confirmPassword) {
+                runOnUiThread {
+                    cus_signup_ProgressBarLayout.visibility = View.VISIBLE
+                    cus_signup_ProgressBarLayout.isClickable = true
+                    cus_signup_ProgressBarLayout.isFocusable = true
+                }
                 val nic = cusEdtNic.text.toString()
                 val email=cusEdtEmail.text.toString()
                 val password=cusEdtPassword.text.toString()
@@ -119,10 +129,6 @@ class CustomerSignUp : AppCompatActivity() {
                     Log.d(ContentValues.TAG, "createUserWithEmail:success")
                     addUserToDatabase(nic,email,userAuth.currentUser?.uid!!,"user" )
                     addUserToSqlDatabase(nic, email, userAuth.currentUser?.uid!!)
-                    //navigate to home
-                    val intent= Intent(this@CustomerSignUp,CustomerHome::class.java)
-                    finish()
-                    startActivity(intent)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
@@ -132,8 +138,9 @@ class CustomerSignUp : AppCompatActivity() {
     }
 
     private fun addUserToDatabase(nic:String,email:String,uid:String,type:String){
-        userDbRef= FirebaseDatabase.getInstance().getReference()
+        userDbRef= FirebaseDatabase.getInstance().reference
         userDbRef.child("customer").child(uid).setValue(Traveller(nic, email, uid,type))
+        Log.d("Success","Success")
     }
 
     private fun addUserToSqlDatabase(nic: String, email: String, uid: String) {
@@ -156,9 +163,21 @@ class CustomerSignUp : AppCompatActivity() {
 
                     // Close the prepared statement
                     preparedStatement.close()
+                    //navigate to home
+                    runOnUiThread {
+                        cus_signup_ProgressBarLayout.visibility = View.GONE
+                        cus_signup_ProgressBarLayout.isClickable = false
+                        cus_signup_ProgressBarLayout.isFocusable = false
+                    }
+                    val intent= Intent(this@CustomerSignUp,CustomerHome::class.java)
+                    finish()
+                    startActivity(intent)
                 } catch (e: SQLException) {
                     Log.e("addUserToDatabase", "SQL Exception: ${e.message}")
                     e.printStackTrace()
+                }finally {
+                    // Close the connection in the finally block to ensure it's always closed
+                    connection.close()
                 }
             } else {
                 Log.e("addUserToDatabase", "Database connection is null")

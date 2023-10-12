@@ -31,7 +31,7 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
     private lateinit var cusTransDateSelect: ImageView
     private lateinit var cusTransStartSelect: ImageView
     private lateinit var cusTransEndSelect: ImageView
-    private var cusStartLocations: MutableList<String> = mutableListOf()
+    private var cusLocations: MutableList<String> = mutableListOf()
     private var cusEndLocations: MutableList<String> = mutableListOf()
     private lateinit var cusStartLocationsAdapter: ArrayAdapter<String>
     private lateinit var cusEndLocationsAdapter: ArrayAdapter<String>
@@ -39,7 +39,9 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
     private var selectedEndLocation: String = ""
     private var selectedDate: String = ""
     private var formattedDate: String = ""
+    private var formattedWeekDay: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_transportation_time_table)
 
@@ -49,7 +51,7 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
             // Start the CustomerAccountManagement activity
             finish()
         }
-
+        var selectedTravelMethod: String ="";
         // Travel method
 
         cusTransMethodSpinner = findViewById(R.id.cusTransMethodSpinner)
@@ -68,9 +70,10 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
         cusTransMethodSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 // Get the selected travel method
-                val selectedTravelMethod = travelMethods[position]
+                selectedTravelMethod = travelMethods[position]
                 // Log the selected travel method
                 Log.d("SelectedTravelMethod", selectedTravelMethod)
+                method(selectedTravelMethod);
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Do nothing
@@ -87,18 +90,16 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
             showDatePicker()
         }
 
-        cusStartLocations = mutableListOf("Colombo", "Kandy", "Jaffna", "Nuwara-Eliya")
-        cusEndLocations = mutableListOf("Colombo", "Kandy", "Jaffna", "Nuwara-Eliya")
-
-        // Start place
 
         cusTransStartSpinner = findViewById(R.id.cusTransStartSpinner)
         cusTransStartSelect = findViewById(R.id.cusTransStartSelect)
-        // Create an ArrayAdapter to populate the Spinner with travel methods
-        cusStartLocationsAdapter = ArrayAdapter(this, R.layout.customer_start_location_dropdown, cusStartLocations)
-        cusStartLocationsAdapter.setDropDownViewResource(R.layout.customer_start_location_dropdown)
-        // Set the adapter for the Spinner
-        cusTransStartSpinner.adapter = cusStartLocationsAdapter
+        cusTransEndSpinner = findViewById(R.id.cusTransEndSpinner)
+        cusTransEndSelect = findViewById(R.id.cusTransEndSelect)
+
+        // Start place
+
+
+
         // Handle the click event on the ImageView to show the dropdown
         cusTransStartSelect.setOnClickListener {
             cusTransStartSpinner.performClick() // Show the dropdown
@@ -106,13 +107,8 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
 
         //End place
 
-        cusTransEndSpinner = findViewById(R.id.cusTransEndSpinner)
-        cusTransEndSelect = findViewById(R.id.cusTransEndSelect)
-        // Create an ArrayAdapter to populate the Spinner with travel methods
-        cusEndLocationsAdapter = ArrayAdapter(this, R.layout.customer_end_location_dropdown, cusEndLocations)
-        cusEndLocationsAdapter.setDropDownViewResource(R.layout.customer_end_location_dropdown)
-        // Set the adapter for the Spinner
-        cusTransEndSpinner.adapter = cusEndLocationsAdapter
+
+
         // Handle the click event on the ImageView to show the dropdown
         cusTransEndSelect.setOnClickListener {
             cusTransEndSpinner.performClick() // Show the dropdown
@@ -177,55 +173,166 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
                 Log.d("selectedStartLocation", selectedStartLocation)
                 Log.d("selectedEndLocation", selectedEndLocation)
                 // Assuming you have a function to format the date as needed
-                val formattedDate = formattedDate
-
-                // Create a list to store the retrieved data
-                var query: String = ""
-                if (selectedTransportMethod.equals("Bus")) {
-                    // Create a SQL query to fetch data based on the selected criteria
-                    query = "SELECT * FROM BusTransport " +
-                            "WHERE startLocation = ? " +
-                            "AND endLocation = ? " +
-                            "AND date = ?"
-                } else {
-                    // Create a SQL query to fetch data based on the selected criteria
-                    query = "SELECT * FROM TrainTransport " +
-                            "WHERE startLocation = ? " +
-                            "AND endLocation = ? " +
-                            "AND date = ?"
-                }
 
                 // Create the database connection using the cusConSQL.conclass function
                 val cusConSQL = CusConSQL()
                 cusConSQL.conclass { connection ->
                     if (connection != null) {
                         try {
-                            val preparedStatement = connection.prepareStatement(query)
-                            preparedStatement.setString(1, selectedStartLocation)
-                            preparedStatement.setString(2, selectedEndLocation)
-                            preparedStatement.setString(3, formattedDate)
+                            // Create a list to store the retrieved data
+                            var query: String = ""
+                            if (selectedTransportMethod.equals("Bus")) {
+                                // Create a SQL query to fetch data based on the selected criteria
+                                query = "SELECT bs.* FROM Bus_schedule bs " +
+                                        "WHERE bs.StartLocation = ? " +
+                                        "AND bs.EndLocation = ?" +
+                                        "AND bs.Date = ? " +
+                                        "AND  IFNULL(" +
+                                        " (SELECT MAX(bb.seatNo) " +
+                                        "   FROM BusSeatBooking bb" +
+                                        "   WHERE bb.bookingNo = bs.BusScheduleId" +
+                                        "),0)  < (" +
+                                        "SELECT b.capacity" +
+                                        "    FROM Bus b" +
+                                        "    WHERE b.busNo = bs.busNo" +
+                                        "  );"
 
-                            val resultSet = preparedStatement.executeQuery()
+                                val preparedStatement = connection.prepareStatement(query)
+                                preparedStatement.setString(1, selectedStartLocation)
+                                preparedStatement.setString(2, selectedEndLocation)
+                                preparedStatement.setString(3, formattedDate)
 
-                            while (resultSet.next()) {
-                                // Retrieve data from the result set and create CustomerTransportationItem objects
-                                val vehicleNo = resultSet.getString("vehicleNo")
-                                val time = resultSet.getString("time")
-                                val routeNo = resultSet.getString("routeNo")
+                                val resultSet = preparedStatement.executeQuery()
 
-                                // Create a CustomerTransportationItem and add it to the list
-                                val transportationItem = CustomerTransportationItem(
-                                    selectedStartLocation,
-                                    selectedEndLocation,
-                                    vehicleNo,
-                                    time,
-                                    routeNo
-                                )
-                                retrievedData.add(transportationItem)
+                                while (resultSet.next()) {
+                                    // Retrieve data from the result set and create CustomerTransportationItem objects
+                                    val scheduleId = resultSet.getInt("BusScheduleId")
+                                    val vehicleNo = resultSet.getString("busNo")
+                                    val time = resultSet.getString("FromTime")
+                                    val routeNo = resultSet.getString("RouteNo")
+
+//                                    val from = resultSet.getString("Date")
+//                                    val to = resultSet.getString("ToDay")
+//
+//                                    val daysOfWeek = arrayOf(
+//                                        "Monday",
+//                                        "Tuesday",
+//                                        "Wednesday",
+//                                        "Thursday",
+//                                        "Friday",
+//                                        "Saturday",
+//                                        "Sunday"
+//                                    )
+//
+//                                    // Get the indices of the selected day, fromDay, and toDay
+//                                    val selectedDayIndex = daysOfWeek.indexOf(formattedWeekDay)
+//                                    val fromDayIndex = daysOfWeek.indexOf(from)
+//                                    val toDayIndex = daysOfWeek.indexOf(to)
+//
+//                                    // Check if the selected day falls within the range of fromDay to toDay
+//                                    if (selectedDayIndex in (fromDayIndex..toDayIndex)) {
+//                                        // Create a CustomerTransportationItem and add it to the list
+//                                        val transportationItem = CustomerTransportationItem(
+//                                            selectedStartLocation,
+//                                            selectedEndLocation,
+//                                            vehicleNo,
+//                                            time,
+//                                            routeNo
+//                                        )
+//                                        retrievedData.add(transportationItem)
+//                                    }
+                                    // Create a CustomerTransportationItem and add it to the list
+                                    val transportationItem = CustomerTransportationItem(
+                                        selectedTransportMethod,
+                                        scheduleId,
+                                        selectedStartLocation,
+                                        selectedEndLocation,
+                                        vehicleNo,
+                                        time,
+                                        routeNo
+                                    )
+                                    retrievedData.add(transportationItem)
+                                }
+
+                                resultSet.close()
+                                preparedStatement.close()
+                            } else {
+                                // Create a SQL query to fetch data based on the selected criteria
+                                query = "SELECT bs.* FROM Train_schedule bs " +
+                                        "WHERE bs.StartLocation = ? " +
+                                        "AND bs.EndLocation = ?" +
+                                        "AND bs.Date = ? " +
+                                        "AND  IFNULL(" +
+                                        " (SELECT MAX(bb.seatNo) " +
+                                        "   FROM TrainSeatBooking bb" +
+                                        "   WHERE bb.bookingNo = bs.TrainScheduleId" +
+                                        "),0)  < (" +
+                                        "SELECT b.capacity" +
+                                        "    FROM Train b" +
+                                        "    WHERE b.trainNo = bs.trainNo" +
+                                        "  );"
+
+                                val preparedStatement = connection.prepareStatement(query)
+                                preparedStatement.setString(1, selectedStartLocation)
+                                preparedStatement.setString(2, selectedEndLocation)
+                                preparedStatement.setString(3, formattedDate)
+
+                                val resultSet = preparedStatement.executeQuery()
+
+                                while (resultSet.next()) {
+                                    // Retrieve data from the result set and create CustomerTransportationItem objects
+                                    val scheduleId = resultSet.getInt("TrainScheduleId")
+                                    val vehicleNo = resultSet.getString("trainNo")
+                                    val time = resultSet.getString("FromTime")
+                                    val routeNo = resultSet.getString("RouteLine")
+//                                    val from = resultSet.getString("FromDay")
+//                                    val to = resultSet.getString("ToDay")
+//
+//                                    val daysOfWeek = arrayOf(
+//                                        "Monday",
+//                                        "Tuesday",
+//                                        "Wednesday",
+//                                        "Thursday",
+//                                        "Friday",
+//                                        "Saturday",
+//                                        "Sunday"
+//                                    )
+//
+//                                    // Get the indices of the selected day, fromDay, and toDay
+//                                    val selectedDayIndex = daysOfWeek.indexOf(formattedWeekDay)
+//                                    val fromDayIndex = daysOfWeek.indexOf(from)
+//                                    val toDayIndex = daysOfWeek.indexOf(to)
+//
+//                                    // Check if the selected day falls within the range of fromDay to toDay
+//                                    if (selectedDayIndex in (fromDayIndex..toDayIndex)) {
+//                                        // Create a CustomerTransportationItem and add it to the list
+//                                        val transportationItem = CustomerTransportationItem(
+//                                            selectedStartLocation,
+//                                            selectedEndLocation,
+//                                            vehicleNo,
+//                                            time,
+//                                            routeNo
+//                                        )
+//                                        retrievedData.add(transportationItem)
+//                                    }
+                                    // Create a CustomerTransportationItem and add it to the list
+                                    val transportationItem = CustomerTransportationItem(
+                                        selectedTransportMethod,
+                                        scheduleId,
+                                        selectedStartLocation,
+                                        selectedEndLocation,
+                                        vehicleNo,
+                                        time,
+                                        routeNo
+                                    )
+                                    retrievedData.add(transportationItem)
+                                }
+
+                                resultSet.close()
+                                preparedStatement.close()
                             }
 
-                            resultSet.close()
-                            preparedStatement.close()
+
                             // Check if retrievedData is empty
                             if (retrievedData.isEmpty()) {
                                 runOnUiThread {
@@ -247,6 +354,9 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
                         } catch (e: SQLException) {
                             e.printStackTrace()
                             // Handle any errors
+                        }finally {
+                            // Close the connection in the finally block to ensure it's always closed
+                            connection.close()
                         }
                     } else {
                         // Handle the case where the database connection is null
@@ -273,23 +383,99 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
         val month = calendar.get(Calendar.MONTH)
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
 
+        // Calculate the maximum date (2 weeks from today)
+        calendar.add(Calendar.DAY_OF_YEAR, 14)
+        val maxYear = calendar.get(Calendar.YEAR)
+        val maxMonth = calendar.get(Calendar.MONTH)
+        val maxDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
         val datePickerDialog = DatePickerDialog(
             this,
             { _, selectedYear, selectedMonth, selectedDay ->
-                // Handle date selection here
-                formattedDate = "$selectedYear-${String.format("%02d", selectedMonth + 1)}-${String.format("%02d", selectedDay)}"
+                // Convert the selected date to a Calendar instance
+                val selectedDateCalendar = Calendar.getInstance()
+                selectedDateCalendar.set(selectedYear, selectedMonth, selectedDay)
+
+                // Get the day of the week for the selected date
+                val dayOfWeek = selectedDateCalendar.get(Calendar.DAY_OF_WEEK)
+
+                // Convert the day of the week to the desired format
+                val daysOfWeek = arrayOf(
+                    "Sunday",
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                )
+                formattedWeekDay = daysOfWeek[dayOfWeek - 1]
+                Log.d("formattedWeekDay",formattedWeekDay)
+
+                //formattedDate = "$selectedYear-${String.format("%02d", selectedMonth + 1)}-${String.format("%02d", selectedDay)}"
                 //selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
                 val formattedDay = String.format("%02d", selectedDay)
                 val formattedMonth = String.format("%02d", selectedMonth + 1) // Adding 1 because months are 0-indexed
                 selectedDate = "$formattedDay/$formattedMonth/$selectedYear"
+                formattedDate=  "$selectedYear-$formattedMonth-$formattedDay"
                 cusTransDateText.text = selectedDate
             },
             year, month, dayOfMonth
         )
         // Set a minimum date constraint (e.g., today's date)
-        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
+//        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
+        // Set a maximum date constraint (2 weeks from today)
+//        val maxDateCalendar = Calendar.getInstance()
+//        maxDateCalendar.set(maxYear, maxMonth, maxDayOfMonth)
+//        datePickerDialog.datePicker.maxDate = maxDateCalendar.timeInMillis
         // Show the DatePickerDialog
         datePickerDialog.show()
+    }
+
+    fun method(selectedTravelMethod:String) {
+
+        if (selectedTravelMethod.equals("Bus")) {
+            cusLocations = mutableListOf(
+                "Colombo",
+                "Panadura",
+                "Dellawa",
+                "Galle",
+                "Ella",
+                "Kandy",
+                "Jaffna",
+                "Nuwara Eliya"
+            )
+            cusLocations = cusLocations.sorted().toMutableList()
+
+            // Create an ArrayAdapter to populate the Spinner with travel methods
+            cusStartLocationsAdapter =
+                ArrayAdapter(this, R.layout.customer_start_location_dropdown, cusLocations)
+            cusStartLocationsAdapter.setDropDownViewResource(R.layout.customer_start_location_dropdown)
+            // Set the adapter for the Spinner
+            cusTransStartSpinner.adapter = cusStartLocationsAdapter
+
+            cusEndLocationsAdapter =
+                ArrayAdapter(this, R.layout.customer_end_location_dropdown, cusLocations)
+            cusEndLocationsAdapter.setDropDownViewResource(R.layout.customer_end_location_dropdown)
+            // Set the adapter for the Spinner
+            cusTransEndSpinner.adapter = cusEndLocationsAdapter
+        } else {
+            cusLocations = mutableListOf("Colombo Fort", "Badulla", "Kokuvil", "Kankesanthurai")
+            cusLocations = cusLocations.sorted().toMutableList()
+
+            // Create an ArrayAdapter to populate the Spinner with travel methods
+            cusStartLocationsAdapter =
+                ArrayAdapter(this, R.layout.customer_start_location_dropdown, cusLocations)
+            cusStartLocationsAdapter.setDropDownViewResource(R.layout.customer_start_location_dropdown)
+            // Set the adapter for the Spinner
+            cusTransStartSpinner.adapter = cusStartLocationsAdapter
+
+            cusEndLocationsAdapter =
+                ArrayAdapter(this, R.layout.customer_end_location_dropdown, cusLocations)
+            cusEndLocationsAdapter.setDropDownViewResource(R.layout.customer_end_location_dropdown)
+            // Set the adapter for the Spinner
+            cusTransEndSpinner.adapter = cusEndLocationsAdapter
+        }
     }
 
 }

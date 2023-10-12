@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ticketease.R
 import com.example.ticketease.data.CustomerMyBookingsItem
+import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -27,6 +28,7 @@ class CustomerMyBookingsAdapter(private val data: List<CustomerMyBookingsItem>) 
         val cusMyBookingNoOfPassengers: TextView = itemView.findViewById(R.id.cusMyBookingNoOfPassengers)
         val cusMyBookingSeatNo: TextView = itemView.findViewById(R.id.cusMyBookingSeatNo)
         val cusMyBookingIssuedDate: TextView = itemView.findViewById(R.id.cusMyBookingIssuedDate)
+        val cusMyBookingIssuedTime: TextView = itemView.findViewById(R.id.cusMyBookingIssuedTime)
         val cusMyBookingArrowUp: ImageView = itemView.findViewById(R.id.cusMyBookingArrowUp)
         val cusMyBookingArrowDown: ImageView = itemView.findViewById(R.id.cusMyBookingArrowDown)
         val cusMyBookingArrowUpLayout: LinearLayout = itemView.findViewById(R.id.cusMyBookingArrowUpLayout)
@@ -52,8 +54,10 @@ class CustomerMyBookingsAdapter(private val data: List<CustomerMyBookingsItem>) 
         holder.cusMyBookingRouteNo.text = item.routeNo
         holder.cusMyBookingNoOfPassengers.text = item.count
         holder.cusMyBookingSeatNo.text = item.seatNo
-        holder.cusMyBookingIssuedDate.text = item.issuedDate
-
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd")
+        val outputFormat = SimpleDateFormat("dd/MM/yyyy")
+        holder.cusMyBookingIssuedDate.text = outputFormat.format(inputFormat.parse(item.issuedDate))
+        holder.cusMyBookingIssuedTime.text = item.issuedTime
         val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
 
         // Compare the current date with the previous date
@@ -68,12 +72,12 @@ class CustomerMyBookingsAdapter(private val data: List<CustomerMyBookingsItem>) 
             }
         }
 
-        if (item.distance.isEmpty()) {
+        if (item.distance== BigDecimal.ZERO) {
             holder.cusMyBookingTicketDetails.setBackgroundResource(R.drawable.cus_ticket_booking_greeen)
         }else{
             holder.cusMyBookingDistanceLayout.visibility = View.VISIBLE
             holder.cusMyBookingCostLayout.visibility = View.VISIBLE
-            holder.cusMyBookingDistance.text = item.distance + " Km"
+            holder.cusMyBookingDistance.text = item.distance.toString() + " Km"
             holder.cusMyBookingCost.text = "LKR "+item.cost
         }
 

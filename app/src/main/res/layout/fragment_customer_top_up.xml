@@ -3,13 +3,132 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.CustomerTopUpFragment"
-    android:background="@color/lightgrey">
+    android:layout_marginTop="20dp"
+    tools:context=".fragment.CustomerTopUpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
+        android:id="@+id/cusFragmentTopUpProgressBarLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="#80000000"
+        android:visibility="gone">
 
+        <ProgressBar
+            android:id="@+id/cusFragmentTopUpProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+    <RelativeLayout
+        android:id="@+id/cusFragmentTopUpFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingVertical="20dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/cusFragmentTopUpInput"
+            android:layout_marginVertical="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="30dp"
+            android:layout_gravity="center">
+
+            <TextView
+                style="@style/custxtOpenSansromanbold20"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.3"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="Top Up :"
+                android:textSize="18sp"
+                android:gravity="center_vertical"/>
+            <EditText
+                android:background="@drawable/cus_profile_inputbox_border"
+                android:id="@+id/editFragmentTopUpInput"
+                android:layout_height="40dp"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:hint="Enter amount"
+                android:textSize="18sp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:gravity="center"
+                android:textColorHint="@color/white"
+                android:inputType="numberDecimal"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/cusFragmentTopUpInputQuick"
+            android:layout_marginVertical="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/cusFragmentTopUpInput"
+            android:paddingHorizontal="30dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/cusFragmentTopUp250"
+                android:background="@drawable/cus_quick_topup"
+                style="@style/custxtOpenSansromanbold20"
+                android:layout_marginHorizontal="5dp"
+                android:backgroundTint="@color/white"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="0.3"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/amount_250"
+                android:textColor="@color/deep_purple_400"
+                android:textSize="18sp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/cusFragmentTopUp500"
+                android:background="@drawable/cus_quick_topup"
+                style="@style/custxtOpenSansromanbold20"
+                android:layout_marginHorizontal="5dp"
+                android:backgroundTint="@color/white"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="0.3"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/amount_500"
+                android:textColor="@color/deep_purple_400"
+                android:textSize="18sp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/cusFragmentTopUp1000"
+                android:background="@drawable/cus_quick_topup"
+                style="@style/custxtOpenSansromanbold20"
+                android:layout_marginHorizontal="5dp"
+                android:backgroundTint="@color/white"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="0.3"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/amount_1000"
+                android:textColor="@color/deep_purple_400"
+                android:textSize="18sp"
+                android:gravity="center"/>
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end"
+            android:layout_centerInParent="true"
+            android:id="@+id/btnCusRecharge"
+            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:singleLine="true"
+            android:text="Pay Now"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/cusFragmentTopUpInputQuick"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:textAllCaps="false"
+            style="@style/cusbtnSolidRoundedOutline"/>
+
+    </RelativeLayout>
 </FrameLayout>

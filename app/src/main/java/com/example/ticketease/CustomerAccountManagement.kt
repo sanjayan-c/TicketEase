@@ -139,7 +139,6 @@ class CustomerAccountManagement : AppCompatActivity() {
         // Assuming you have the necessary UI elements and variables for updated data
         val btnCusUpdate = findViewById<AppCompatButton>(R.id.btnCusUpdate)
         val btnCusCancel = findViewById<AppCompatButton>(R.id.btnCusCancel)
-
         btnCusUpdate.setOnClickListener {
             // Create an AlertDialog
             val alertDialogBuilder = AlertDialog.Builder(this)
@@ -204,6 +203,9 @@ class CustomerAccountManagement : AppCompatActivity() {
                             Log.e("Update Error", "SQL Exception: ${e.message}")
                             e.printStackTrace()
                             // Handle any errors that occur during the update
+                        } finally {
+                            // Close the connection in the finally block to ensure it's always closed
+                            connection.close()
                         }
                     } else {
                         Log.e("Update Error", "Database connection is null")
@@ -220,6 +222,7 @@ class CustomerAccountManagement : AppCompatActivity() {
             alertDialog.show()
 
         }
+
 
         btnCusCancel.setOnClickListener {
             finish()

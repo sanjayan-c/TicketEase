@@ -10,7 +10,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ticketease.R
 import com.example.ticketease.data.CustomerTransactions
+import java.math.BigDecimal
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
@@ -33,11 +36,16 @@ class CustomerTransactionsAdapter (private val data: List<CustomerTransactions>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.customer_transactions_list_item_name.text = item.detail
-        holder.customer_transactions_list_item_date_time.text = item.date+" - "+item.time
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val parsedDate = LocalDate.parse(item.date, formatter)
+        val formattedDate = parsedDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+        holder.customer_transactions_list_item_date_time.text = formattedDate+" - "+item.time
         holder.customer_transactions_list_item_no.text = item.no
-        holder.customer_transactions_list_item_cost.text = item.price+" LKR"
-        if(item.isTopUp){
-            // Set the ImageView source for top-up transactions
+        val absPrice = item.price.abs()
+        holder.customer_transactions_list_item_cost.text = "${absPrice} LKR"
+
+        if (item.price > BigDecimal.ZERO) {
+            // Set the ImageView source for positive-price transactions
             holder.customer_transactions_list_item_symbol.setImageResource(R.drawable.cus_transactions_in)
         }
     }

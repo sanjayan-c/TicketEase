@@ -1,6 +1,10 @@
 package com.example.ticketease.data
 
+import java.math.BigDecimal
+
 data class CustomerTransportationItem(
+    val vehicelType: String,
+    val scheduleId: Int,
     val startLocations: String,
     val endLocations: String,
     val vehicleNo: String,
@@ -8,6 +12,7 @@ data class CustomerTransportationItem(
     val routeNo: String
 )
 data class CustomerMyBookingsItem(
+    val bookingNo: Int,
     val startLocations: String,
     val endLocations: String,
     val vehicleNo: String,
@@ -17,8 +22,9 @@ data class CustomerMyBookingsItem(
     val seatNo: String,
     val date: String,
     val issuedDate: String,
-    val distance: String,
-    val cost: String
+    val issuedTime: String,
+    val distance: BigDecimal,
+    val cost: BigDecimal
 )
 
 data class CustomerTransactions(
@@ -26,8 +32,7 @@ data class CustomerTransactions(
     val date: String,
     val time: String,
     val no: String,
-    val price: String,
-    val isTopUp: Boolean
+    val price: BigDecimal
 )
 
 data class Traveller(

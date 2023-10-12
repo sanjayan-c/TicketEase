@@ -415,7 +415,7 @@
                     android:layout_weight="0.7"
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
-                    android:text="Issued Date"
+                    android:text="Issue Date"
                     style="@style/custxtOpenSansHebrewregular15_1"/>
                 <TextView
                     android:ellipsize="end"

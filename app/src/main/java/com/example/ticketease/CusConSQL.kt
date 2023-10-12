@@ -34,7 +34,7 @@ class CusConSQL {
             var connection: Connection? = null
             try {
                 Class.forName("net.sourceforge.jtds.jdbc.Driver")
-                val connectURL = "jdbc:mysql://db4free.net/ticket_ease?user=sanjayan_c&password=12345678"
+                val connectURL = "jdbc:mysql://sql12.freemysqlhosting.net/sql12652268?user=sql12652268&password=2sMIHit1zM"
                 connection = DriverManager.getConnection(connectURL)
             } catch (e: ClassNotFoundException) {
                 Log.e("Error is from SQL", "JDBC Driver not found")
@@ -50,7 +50,7 @@ class CusConSQL {
     }
 }
 
-
+//2sMIHit1zM
 //class CusConSQL {
 //    var con: Connection? = null
 //    var uname: String? = null

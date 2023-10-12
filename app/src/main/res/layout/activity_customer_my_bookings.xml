@@ -58,19 +58,47 @@
         android:textColor="@color/bluegray_101"
         android:textSize="18dp" />
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
-        android:layout_below="@+id/cusMyBookingsCustomerNIC">
-        <androidx.recyclerview.widget.RecyclerView
-            android:gravity="center_horizontal"
-            android:id="@+id/recyclerListCustomerMyBookings"
-            android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/cusMyBookingsCustomerNIC"
+        android:layout_marginBottom="30dp">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            tools:listitem="@layout/customer_my_bookings_list"/>
-    </ScrollView>
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:gravity="center_horizontal"
+                android:id="@+id/recyclerListCustomerMyBookings"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                tools:listitem="@layout/customer_my_bookings_list"/>
+        </ScrollView>
+        <!-- Loading ProgressBar and TextView -->
+        <FrameLayout
+            android:id="@+id/CustomerMyBookingsProgressBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true">
+
+            <ProgressBar
+                android:id="@+id/CustomerMyBookingsProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+            <TextView
+                android:id="@+id/CustomerMyBookingsNoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Bookings Yet"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+        </FrameLayout>
+    </FrameLayout>
 
 </RelativeLayout>
