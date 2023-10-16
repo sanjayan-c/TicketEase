@@ -30,6 +30,7 @@ class CustomerHome : AppCompatActivity() {
     private var cusLogout : LinearLayout? = null
     private lateinit var userAuth: FirebaseAuth
     private var textViewBelowImage: TextView? = null
+    private var cusAccBal2: TextView? = null
 
     lateinit var connect: Connection
     var ConnectionResult: String=""
@@ -50,7 +51,12 @@ class CustomerHome : AppCompatActivity() {
 
                     // Your SQL query to fetch customer details
                     val user = userAuth.currentUser?.uid ?: ""
-                    val query = "SELECT * FROM customer WHERE cusId = '$user'"
+                    println("User : $user")
+                    val query = "SELECT c.cusId, c.cusFirstName, c.cusLastName, c.cusNic, c.cusGmail, c.cusImage, SUM(cp.price) AS balance " +
+                            "FROM customer c " +
+                            "LEFT JOIN CustomerPayment cp ON c.cusId = cp.cusId " +
+                            "WHERE c.cusId = '$user' " +
+                            "GROUP BY c.cusId";
 
                     try {
 
@@ -66,6 +72,7 @@ class CustomerHome : AppCompatActivity() {
                         var cusNic: String? = null
                         var cusGmail: String? = null
                         var cusImage: String? = null
+                        var cusBalance: String? = null
 
                         // Iterate through the result set and log the details
                         while (resultSet.next()) {
@@ -75,6 +82,7 @@ class CustomerHome : AppCompatActivity() {
                             cusNic = resultSet.getString("cusNic")
                             cusGmail = resultSet.getString("cusGmail")
                             cusImage = resultSet.getString("cusImage")
+                            cusBalance = resultSet.getString("balance")
 
                             // Log the customer details
                             Log.d("CustomerDetails", "cusId: $cusId")
@@ -83,6 +91,7 @@ class CustomerHome : AppCompatActivity() {
                             Log.d("CustomerDetails", "cusNic: $cusNic")
                             Log.d("CustomerDetails", "cusGmail: $cusGmail")
                             Log.d("CustomerDetails", "cusImage: $cusImage")
+                            Log.d("CustomerDetails", "cusBalance: $cusBalance")
                         }
 
                         // Close the statement and result set
@@ -96,8 +105,13 @@ class CustomerHome : AppCompatActivity() {
                         ImageDataSingleton.lasttName = cusLastName
                         ImageDataSingleton.imageData = cusImage
                         runOnUiThread {
-                            if (cusFirstName != null) {
-                                textViewBelowImage?.text = "$cusFirstName $cusLastName"
+
+                            textViewBelowImage?.text = "$cusFirstName $cusLastName"
+
+                            if (cusBalance != null) {
+                                cusAccBal2?.text = cusBalance
+                            }else{
+                                cusAccBal2?.text = "0.00"
                             }
 
                             if (cusImage != null) {
@@ -127,6 +141,7 @@ class CustomerHome : AppCompatActivity() {
 
                             cusQR?.setOnClickListener { // Start the CustomerAccountManagement activity
                                 val intent = Intent(this@CustomerHome, CustomerQRCode::class.java)
+                                intent.putExtra("cusId", cusId)
                                 startActivity(intent)
                             }
 
@@ -232,6 +247,7 @@ class CustomerHome : AppCompatActivity() {
             cusLogout = findViewById(R.id.cus_logout)
             cusProfileImage = findViewById(R.id.cusProfileImage)
             textViewBelowImage = findViewById(R.id.textViewBelowImage)
+            cusAccBal2 = findViewById(R.id.cusAccBal2)
         }
     }
     fun getCurrentDateTime(): Pair<String, String> {

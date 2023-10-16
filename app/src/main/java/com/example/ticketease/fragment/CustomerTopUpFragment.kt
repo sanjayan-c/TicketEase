@@ -110,7 +110,7 @@ class CustomerTopUpFragment : Fragment() {
                             try {
                                 // Update query with placeholders for binding
                                 val query =
-                                    "INSERT INTO CustomerPayment(cusId,detail,date,time,price) VALUES (?, ?, ?, ?, ?)"
+                                    "INSERT INTO CustomerPayment(cusId,detail,date,time,price,updatedBy) VALUES (?, ?, ?, ?, ?, ?)"
 
                                 val preparedStatement = connection.prepareStatement(query)
                                 // Bind the values to the placeholders
@@ -119,6 +119,7 @@ class CustomerTopUpFragment : Fragment() {
                                 preparedStatement.setString(3, currentDate)
                                 preparedStatement.setString(4, currentTime)
                                 preparedStatement.setBigDecimal(5, price)
+                                preparedStatement.setString(6, user)
 
                                 // Execute the insert query
                                 val rowsAffected = preparedStatement.executeUpdate()

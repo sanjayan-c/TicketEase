@@ -52,4 +52,10 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation ("net.sourceforge.jtds:jtds:1.3.1")
     implementation("mysql:mysql-connector-java:5.1.49")
+
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("com.google.zxing:core:3.4.1")
+    implementation("com.journeyapps:zxing-android-embedded:4.2.0") {
+        exclude(group = "com.android.support")
+        }
 }

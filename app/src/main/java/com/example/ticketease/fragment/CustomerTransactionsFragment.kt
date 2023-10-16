@@ -19,6 +19,9 @@ import com.example.ticketease.data.CustomerMyBookingsItem
 import com.example.ticketease.data.CustomerTransactions
 import com.example.ticketease.data.CustomerTransportationItem
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.sql.SQLException
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -53,84 +56,106 @@ class CustomerTransactionsFragment : Fragment() {
             cusFragmentTransactionsProgressBarLayout?.isClickable = true
             cusFragmentTransactionsProgressBarLayout?.isFocusable = true
         }
-
-        // Create the database connection using the cusConSQL.conclass function
-        val cusConSQL = CusConSQL()
-        cusConSQL.conclass { connection ->
-            if (connection != null) {
-                try {
-                    val user = userAuth.currentUser?.uid ?: ""
-                    var query = "SELECT paymentId,detail,date,time,refNo,price FROM CustomerPayment " +
-                            "WHERE cusId = ? "
-
-                    val preparedStatement = connection.prepareStatement(query)
-                    preparedStatement.setString(1, user)
-
-                    val resultSet = preparedStatement.executeQuery()
-
-                    while (resultSet.next()) {
-                        // Retrieve data from the result set and create CustomerTransportationItem objects
-                        val paymentId = resultSet.getString("paymentId")
-                        val detail = resultSet.getString("detail")
-                        val date = resultSet.getString("date")
-                        val time = resultSet.getString("time")
-                        var refNo = resultSet.getString("refNo")
-                        val price = resultSet.getBigDecimal("price")
-                        // Check if refNo is null, and if it is, assign paymentId to it
-                        if (refNo == null) {
-                            refNo = paymentId
-                        }
-
-                        // Create a CustomerTransportationItem and add it to the list
-                        val customerTransactions = CustomerTransactions(
-                            detail,
-                            date,
-                            time,
-                            refNo,
-                            price
-                        )
-                        retrievedData.add(customerTransactions)
-                    }
-
-                    resultSet.close()
-                    preparedStatement.close()
-                    // Check if retrievedData is empty
-                    if (retrievedData.isEmpty()) {
-                        requireActivity().runOnUiThread {
-                            // Show the "Nothing to show" TextView
-                            cusFragmentTransactionsProgressBar?.visibility = View.GONE
-                            val cusFragmentTransactionsNoText = view.findViewById<TextView>(R.id.cusFragmentTransactionsNoText)
-                            cusFragmentTransactionsNoText.visibility = View.VISIBLE
-                        }
-                    }else {
-                        requireActivity().runOnUiThread {
-                            // Hide the loading screen
-                            cusFragmentTransactionsProgressBarLayout?.visibility = View.GONE
-                            cusFragmentTransactionsProgressBar?.visibility = View.GONE
-                            // Re-enable user interaction with the entire layout
-                            cusFragmentTransactionsProgressBarLayout?.isClickable = false
-                            cusFragmentTransactionsProgressBarLayout?.isFocusable = false
-                        }
-                    }
-                } catch (e: SQLException) {
-                    e.printStackTrace()
-                    // Handle any errors
-                }finally {
-                    // Close the connection in the finally block to ensure it's always closed
-                    connection.close()
-                }
-            } else {
-                // Handle the case where the database connection is null
+        // Start a Coroutine to load the data in the background
+        CoroutineScope(Dispatchers.IO).launch {
+            if (!isAdded) {
+                return@launch
             }
 
-            // Sort the combined list by date in descending order (latest first)
-            val sortedList = retrievedData.sortedWith(compareByDescending<CustomerTransactions> { it.date }.thenByDescending { it.time })
-            requireActivity().runOnUiThread {
-                // Set the retrieved data in the RecyclerView
-                val recyclerView = view.findViewById<RecyclerView>(R.id.cusFragmentTransactionsRecyclerView)
-                val adapter = CustomerTransactionsAdapter(sortedList)
-                recyclerView.adapter = adapter
-                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            // Create the database connection using the cusConSQL.conclass function
+            val cusConSQL = CusConSQL()
+            cusConSQL.conclass { connection ->
+                if (!isAdded) {
+                    return@conclass
+                }
+                if (connection != null) {
+                    try {
+                        val user = userAuth.currentUser?.uid ?: ""
+                        var query =
+                            "SELECT paymentId,detail,date,time,refNo,price FROM CustomerPayment " +
+                                    "WHERE cusId = ? "
+
+                        val preparedStatement = connection.prepareStatement(query)
+                        preparedStatement.setString(1, user)
+
+                        val resultSet = preparedStatement.executeQuery()
+
+                        while (resultSet.next()) {
+                            // Retrieve data from the result set and create CustomerTransportationItem objects
+                            val paymentId = resultSet.getString("paymentId")
+                            val detail = resultSet.getString("detail")
+                            val date = resultSet.getString("date")
+                            val time = resultSet.getString("time")
+                            var refNo = resultSet.getString("refNo")
+                            val price = resultSet.getBigDecimal("price")
+                            // Check if refNo is null, and if it is, assign paymentId to it
+                            if (refNo == null) {
+                                refNo = paymentId
+                            }
+
+                            // Create a CustomerTransportationItem and add it to the list
+                            val customerTransactions = CustomerTransactions(
+                                detail,
+                                date,
+                                time,
+                                refNo,
+                                price
+                            )
+                            retrievedData.add(customerTransactions)
+                        }
+
+                        resultSet.close()
+                        preparedStatement.close()
+                        // Check if retrievedData is empty
+                        if (retrievedData.isEmpty()) {
+                            requireActivity().runOnUiThread {
+                                if (!isAdded) {
+                                    return@runOnUiThread
+                                }
+                                // Show the "Nothing to show" TextView
+                                cusFragmentTransactionsProgressBar?.visibility = View.GONE
+                                val cusFragmentTransactionsNoText =
+                                    view.findViewById<TextView>(R.id.cusFragmentTransactionsNoText)
+                                cusFragmentTransactionsNoText.visibility = View.VISIBLE
+                            }
+                        } else {
+                            requireActivity().runOnUiThread {
+                                if (!isAdded) {
+                                    return@runOnUiThread
+                                }
+                                // Hide the loading screen
+                                cusFragmentTransactionsProgressBarLayout?.visibility = View.GONE
+                                cusFragmentTransactionsProgressBar?.visibility = View.GONE
+                                // Re-enable user interaction with the entire layout
+                                cusFragmentTransactionsProgressBarLayout?.isClickable = false
+                                cusFragmentTransactionsProgressBarLayout?.isFocusable = false
+                            }
+                        }
+                    } catch (e: SQLException) {
+                        e.printStackTrace()
+                        // Handle any errors
+                    } finally {
+                        // Close the connection in the finally block to ensure it's always closed
+                        connection.close()
+                    }
+                } else {
+                    // Handle the case where the database connection is null
+                }
+
+                // Sort the combined list by date in descending order (latest first)
+                val sortedList =
+                    retrievedData.sortedWith(compareByDescending<CustomerTransactions> { it.date }.thenByDescending { it.time })
+                requireActivity().runOnUiThread {
+                    if (!isAdded) {
+                        return@runOnUiThread
+                    }
+                    // Set the retrieved data in the RecyclerView
+                    val recyclerView =
+                        view.findViewById<RecyclerView>(R.id.cusFragmentTransactionsRecyclerView)
+                    val adapter = CustomerTransactionsAdapter(sortedList)
+                    recyclerView.adapter = adapter
+                    recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                }
             }
         }
 //

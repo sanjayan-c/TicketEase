@@ -53,7 +53,8 @@
                 android:id="@+id/cusVirtualWalletBalance"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:orientation="vertical" style="@style/cusgroupStylecornerRadius_1">
+                android:orientation="vertical"
+                style="@style/cusgroupStylecornerRadius_1">
 
                 <LinearLayout
                     android:layout_height="wrap_content"
@@ -107,7 +108,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
                                 android:singleLine="true"
-                                android:text="500.00"
                                 android:textSize="24sp"
                                 style="@style/custxtOpenSansHebrewbold32"/>
                             <TextView android:ellipsize="end"
@@ -158,9 +158,10 @@
                         android:src="@drawable/cus_my_wallet_img_group"
                         tools:ignore="ContentDescription"/>
                 </LinearLayout>
-                <TextView android:ellipsize="end" android:gravity="end"
+                <TextView android:ellipsize="end"
                     android:id="@+id/cusVirtualWalletTimeLastUpdate"
                     android:layout_gravity="end"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="15dp"
@@ -168,9 +169,24 @@
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="5dp"
                     android:singleLine="true"
-                    android:text="Last Updated : 14:25 pm"
                     style="@style/custxtSolidRounded_2" />
             </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/cusWalletProgressBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/cusVirtualWalletTransMethods"
+                android:layout_centerInParent="true"
+                android:background="#80000000">
+
+                <ProgressBar
+                    android:id="@+id/cusWalletProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_centerInParent="true" />
+            </FrameLayout>
 
 
             <LinearLayout

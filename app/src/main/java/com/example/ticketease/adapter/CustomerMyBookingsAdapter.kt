@@ -1,5 +1,6 @@
 package com.example.ticketease.adapter
 
+import android.util.Log
 import android.view.FrameMetrics
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +40,9 @@ class CustomerMyBookingsAdapter(private val data: List<CustomerMyBookingsItem>) 
         val cusMyBookingDistanceLayout: LinearLayout = itemView.findViewById(R.id.cusMyBookingDistanceLayout)
         val cusMyBookingCostLayout: LinearLayout = itemView.findViewById(R.id.cusMyBookingCostLayout)
         val cusMyBookingTravelDateTextView: TextView = itemView.findViewById(R.id.cusMyBookingTravelDateTextView)
+        val cusMyBookingArrowDownText: TextView = itemView.findViewById(R.id.cusMyBookingArrowDownText)
+        val cusMyBookingArrowDownText2: TextView = itemView.findViewById(R.id.cusMyBookingArrowDownText2)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -56,9 +60,12 @@ class CustomerMyBookingsAdapter(private val data: List<CustomerMyBookingsItem>) 
         holder.cusMyBookingSeatNo.text = item.seatNo
         val inputFormat = SimpleDateFormat("yyyy-MM-dd")
         val outputFormat = SimpleDateFormat("dd/MM/yyyy")
-        holder.cusMyBookingIssuedDate.text = outputFormat.format(inputFormat.parse(item.issuedDate))
+        val issuedDate = inputFormat.parse(item.issuedDate)
+        holder.cusMyBookingIssuedDate.text = outputFormat.format(issuedDate)
         holder.cusMyBookingIssuedTime.text = item.issuedTime
         val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
+        Log.d("date", item.date)
+        Log.d("currentDate",currentDate)
 
         // Compare the current date with the previous date
         if (position == 0 || item.date != data[position - 1].date) {
@@ -72,8 +79,13 @@ class CustomerMyBookingsAdapter(private val data: List<CustomerMyBookingsItem>) 
             }
         }
 
-        if (item.distance== BigDecimal.ZERO) {
-            holder.cusMyBookingTicketDetails.setBackgroundResource(R.drawable.cus_ticket_booking_greeen)
+        if (item.distance <= BigDecimal.ZERO) {
+            if (item.date < currentDate) {
+                holder.cusMyBookingArrowDownText.visibility = View.VISIBLE // Set your background drawable for past dates here
+                holder.cusMyBookingArrowDownText2.visibility = View.VISIBLE // Set your background drawable for past dates here
+            }else {
+                holder.cusMyBookingTicketDetails.setBackgroundResource(R.drawable.cus_ticket_booking_greeen)
+            }
         }else{
             holder.cusMyBookingDistanceLayout.visibility = View.VISIBLE
             holder.cusMyBookingCostLayout.visibility = View.VISIBLE
