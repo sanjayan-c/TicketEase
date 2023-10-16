@@ -1,0 +1,127 @@
+﻿.invisible-cell {
+    display: none;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+}
+.menu-name-price {
+    margin: auto;
+    padding: 4px;
+    font-size: 15px;
+}
+.select-food-row {
+    padding: 15px;
+}
+.action-menu {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.td-status-good {
+    color: white;
+    background-color: green ;/* your desired background color */
+    padding: 0 5px; /* adjust the padding as needed */
+}
+.td-status-danger {
+    color: white;
+    background-color: red; /* your desired background color */
+    padding: 0 8px; /* adjust the padding as needed */
+}
+
+.form-control-sm {
+    height: calc(1.5em + 0.5rem + 2px);
+    padding: 0.25rem 0.5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+.searchdiv{
+    text-align: right;
+}
+.searchlab,
+.searchinput {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+    width: auto;
+    margin-left: 0.5em;
+}
+
+.parent-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-name-price-box1 {
+    /*border: 1px solid black;*/
+    /*margin-bottom: 10px;*/
+    font-weight:bold;
+    text-align:center;
+}
+
+
+.number-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.num-input {
+    width: 55px;
+    height: 20px;
+    padding: 1px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.minus-btn,
+.plus-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #666;
+    border: none;
+    border-radius: 3px;
+    background-color: #fff;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+    .minus-btn:hover,
+    .plus-btn:hover {
+        color: #fff;
+        background-color: #666;
+    }
+
+.contain {
+    display: flex;
+    justify-content: center; /* Centers child elements horizontally */
+    /*align-items: center; /* Centers child elements vertically */
+    height: 10px; /* Optional: set the height of the container to center vertically */
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.foot{
+    display:flex;
+    justify-content:space-between;
+    margin:20px 0px;
+    
+    border-top:1px solid black;
+}
+
+.low-quantity {
+    color: red;
+}
