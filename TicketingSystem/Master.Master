@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.Master.cs" Inherits="TicketingSystem.Home" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.Master.cs" Inherits="TicketingSystem.Master" %>
 
 <!DOCTYPE html>
 

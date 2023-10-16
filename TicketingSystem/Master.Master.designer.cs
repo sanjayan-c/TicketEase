@@ -11,7 +11,7 @@ namespace TicketingSystem
 {
 
 
-    public partial class Home
+    public partial class Master
     {
 
         /// <summary>
