@@ -23,6 +23,8 @@ import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.sql.SQLException
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class CustomerSignUp : AppCompatActivity() {
 
@@ -148,8 +150,9 @@ class CustomerSignUp : AppCompatActivity() {
         cusConSQL.conclass { connection ->
             if (connection != null) {
                 try {
-                    val query = "INSERT INTO customer (cusNic, cusFirstName, cusLastName, cusGmail, cusId) " +
-                            "VALUES (?, ?, ?, ?, ?)"
+                    val (currentDate, currentTime) = getCurrentDateTime()
+                    val query = "INSERT INTO customer (cusNic, cusFirstName, cusLastName, cusGmail, cusId, cusSignupDate, cusSignupTime) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?)"
 
                     val preparedStatement = connection.prepareStatement(query)
                     preparedStatement.setString(1, nic)
@@ -157,6 +160,8 @@ class CustomerSignUp : AppCompatActivity() {
                     preparedStatement.setNull(3, java.sql.Types.VARCHAR) // cusLastName
                     preparedStatement.setString(4, email)
                     preparedStatement.setString(5, uid)
+                    preparedStatement.setString(6, currentDate)
+                    preparedStatement.setString(7, currentTime)
 
                     // Execute the prepared statement
                     preparedStatement.executeUpdate()
@@ -184,7 +189,14 @@ class CustomerSignUp : AppCompatActivity() {
             }
         }
     }
-
+    private fun getCurrentDateTime(): Pair<String, String> {
+        val currentDateTime = LocalDateTime.now()
+        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+        val currentDate = currentDateTime.format(dateFormatter)
+        val currentTime = currentDateTime.format(timeFormatter)
+        return Pair(currentDate, currentTime)
+    }
 
 
 

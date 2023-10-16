@@ -28,6 +28,7 @@ class CustomerHome : AppCompatActivity() {
     private var cusBookings : LinearLayout? = null
     private var cusWallet : LinearLayout? = null
     private var cusLogout : LinearLayout? = null
+    private var cusOnline : LinearLayout? = null
     private lateinit var userAuth: FirebaseAuth
     private var textViewBelowImage: TextView? = null
     private var cusAccBal2: TextView? = null
@@ -214,6 +215,7 @@ class CustomerHome : AppCompatActivity() {
             }
         }else{
             switchToCustomerHomeLayout()
+            cusOnline?.visibility = View.GONE
             cusBookNow?.setOnClickListener { // Start the CustomerAccountManagement activity
                 val intent = Intent(
                     this@CustomerHome,
@@ -248,6 +250,7 @@ class CustomerHome : AppCompatActivity() {
             cusProfileImage = findViewById(R.id.cusProfileImage)
             textViewBelowImage = findViewById(R.id.textViewBelowImage)
             cusAccBal2 = findViewById(R.id.cusAccBal2)
+            cusOnline = findViewById(R.id.cusOnline)
         }
     }
     fun getCurrentDateTime(): Pair<String, String> {

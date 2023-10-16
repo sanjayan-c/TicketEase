@@ -49,22 +49,36 @@
             android:layout_gravity="center"
             tools:ignore="ContentDescription" />
     </FrameLayout>
-
-    <TextView
-        android:id="@+id/cusQRScanMe"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/cusQRline"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cusQRFrame"
-        android:layout_marginTop="50dp"
-        android:padding="10dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:layout_centerHorizontal="true"
-        android:text="Scan Me!!"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:background="@drawable/cus_purple1"
-        android:textColor="#FFFFFF" />
+        android:layout_below="@+id/cusQRFrame"
+        android:layout_marginTop="50dp">
+        <TextView
+            android:id="@+id/cusQRScanMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_centerHorizontal="true"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="Scan Me!!"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:background="@drawable/cus_purple1"
+            android:textColor="#FFFFFF" />
+        <ImageView
+            android:id="@+id/greenDownlaod"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="60dp"
+            android:src="@drawable/qr_download"
+            android:contentDescription="Online Indicator"/>
+    </RelativeLayout>
+
 
 
 </RelativeLayout>

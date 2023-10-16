@@ -9,6 +9,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ticketease.R
 import com.example.ticketease.data.CustomerMyBookingsItem
@@ -80,7 +81,15 @@ class CustomerMyBookingsAdapter(private val data: List<CustomerMyBookingsItem>) 
         }
 
         if (item.distance <= BigDecimal.ZERO) {
-            if (item.date < currentDate) {
+            if(item.distance < BigDecimal.ZERO){
+                holder.cusMyBookingArrowDownText.text = "Ongoing"
+                holder.cusMyBookingArrowDownText.setBackgroundResource(R.color.lt_green)
+                holder.cusMyBookingArrowDownText.visibility = View.VISIBLE
+                holder.cusMyBookingArrowDownText2.text = "Ongoing"
+                holder.cusMyBookingArrowDownText2.setBackgroundResource(R.color.lt_green)
+                holder.cusMyBookingArrowDownText2.visibility = View.VISIBLE
+                holder.cusMyBookingTicketDetails.setBackgroundResource(R.drawable.cus_ticket_booking_greeen)
+            }else if (item.date < currentDate) {
                 holder.cusMyBookingArrowDownText.visibility = View.VISIBLE // Set your background drawable for past dates here
                 holder.cusMyBookingArrowDownText2.visibility = View.VISIBLE // Set your background drawable for past dates here
             }else {

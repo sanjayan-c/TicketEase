@@ -448,7 +448,7 @@
             android:layout_height="50dp"
             android:layout_width="100dp"
             android:singleLine="true"
-            android:text="Book"
+            android:text="Confirm"
             android:layout_marginEnd="10dp"
             android:textAllCaps="false"
             style="@style/cusbtnSolidRoundedOutline"/>
