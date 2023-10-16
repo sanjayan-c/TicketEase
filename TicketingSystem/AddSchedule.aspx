@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="template/css/card-view.css" rel="stylesheet" />
     <script src="template/js/tabImageUpdater.js"></script>
-    <script src="template/js/tab.js"></script>
+    <%--<script src="template/js/tab.js"></script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
@@ -170,7 +170,7 @@
 
     <script src="template/js/card-view.js"></script>
     <script src="template/js/tabImageUpdater.js"></script>
-    <script>$(document).ready(function () {
+   <%-- <script>$(document).ready(function () {
             // Attach a click event handler to the divTabPopcorn
             $('#divTabPopcorn').on('click', function () {
                 // Make an AJAX request to the server to fetch train numbers
@@ -198,6 +198,6 @@
         });
     });
 });
-    </script>
+    </script>--%>
 
 </asp:Content>

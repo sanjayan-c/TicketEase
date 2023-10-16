@@ -1,131 +1,149 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="TicketIssues.aspx.cs" Inherits="TicketingSystem.WebForm5" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
+    <link href="template/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="template/css/style.css" rel="stylesheet" />
+    <link href="template/css/helper.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 	
-				<div class="container-fluid p-5">
+				
+	 <div class="container-fluid">
+             <!-- /# row -->
+          <div class="main-content">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="compose-email">
+                      <div class="mail-box">
+                        <aside class="sm-side">
+                         
+                          <div class="inbox-body text-center">
+                            
+                            <!-- Modal -->
+                            <div aria-hidden="true" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                              <div class="modal-dialog">
+                                <div class="modal-content text-left">
+                                  <div class="modal-body">
+                                    <form class="form-horizontal">
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">To</label>
+                                        <div class="col-lg-10">
+                                          <input type="text" placeholder="" id="inputEmail1" class="form-control">
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">Cc / Bcc</label>
+                                        <div class="col-lg-10">
+                                          <input type="text" placeholder="" id="cc" class="form-control">
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">Subject</label>
+                                        <div class="col-lg-10">
+                                          <input type="text" placeholder="" id="inputPassword1" class="form-control">
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">Message</label>
+                                        <div class="col-lg-10">
+                                          <textarea rows="10" cols="30" class="form-control" id="texarea1" name="texarea"></textarea>
+                                        </div>
+                                      </div>
 
-					<h1 class="h3 mb-3">Invoice</h1>
+                                      <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                          <span class="btn green fileinput-button"><i class="fa fa-plus fa fa-white"></i>
+																	<span>Attachment</span>
+                                          <input type="file" name="files[]" multiple="">
+                                          </span>
+                                          <button class="btn btn-primary" type="submit">Send</button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                                <!-- /.modal-content -->
+                              </div>
+                              <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+                          </div>
+                          <ul class="inbox-nav inbox-divider">
+                            <li class="breadcrumb-item active">
+                              <a href="#"><i class="fa fa-inbox"></i> Unresponded <span class="badge badge-success pull-right m-t-12">2</span></a>
+                            </li>
+                            <li>
+                              <a href="#"><i class="fa fa-envelope-o"></i> Responded</a>
+                            </li>
+                            <li>
+                              <a href="#"><i class=" fa fa-trash-o"></i> Trash</a>
+                            </li>
+                          </ul>
 
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-body m-sm-3 m-md-5">
-									<div class="mb-4">
-										Hello <strong>Charles Hall</strong>,
-										<br>
-										This is the receipt for a payment of <strong>$268.00</strong> (USD) you made to AdminKit Demo.
-									</div>
 
-									<div class="row">
-										<div class="col-md-6">
-											<div class="text-muted">Payment No.</div>
-											<strong>741037024</strong>
-										</div>
-										<div class="col-md-6 text-md-end">
-											<div class="text-muted">Payment Date</div>
-											<strong>June 2, 2023 - 03:45 pm</strong>
-										</div>
-									</div>
+                        </aside>
+                        <aside class="lg-side">
+                          <div class="inbox-head">
+                            <h3 class="input-text">Issues</h3>
+                            <form action="#" class="pull-right position">
+                              <div class="input-append inner-append">
+                                <input type="text" class="sr-input" placeholder="Search Mail">
+                                <button class="btn sr-btn append-btn" type="button"><i class="fa fa-search"></i></button>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="mail-option">
+                            <div class="chk-all chk-group">
+                              <input type="checkbox" class="mail-checkbox mail-group-checkbox" id="checkAll" />
+                              <div class="btn-group">
+                                <a data-toggle="dropdown" href="#" class="btn mini all m-l-10" aria-expanded="false">All<i class="fa fa-angle-down "></i></a>
+                                <ul class="card-option-dropdown dropdown-menu">
+                                  <li><a href="#"> None</a></li>
+                                  <li><a href="#"> Read</a></li>
+                                  <li><a href="#"> Unread</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                       
+                            <div class="btn-group">
+                              <a data-toggle="dropdown" href="#" class="btn mini blue">Move to<i class="fa fa-angle-down "></i></a>
+                              <ul class="card-option-dropdown dropdown-menu">
+                                <li><a href="#">Draft</a></li>
+                                <li><a href="#">Spam</a></li>
+                                <li><a href="#"> Delete</a></li>
+                              </ul>
+                            </div>
 
-									<hr class="my-4">
+                            <ul class="unstyled inbox-pagination pagination-list">
+                              <li><span>1-50 of 234</span></li>
+                              <li>
+                                <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                              </li>
+                              <li>
+                                <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="table-responsive">
+                            <table class="table table-inbox table-hover table-responsive">
+                              <tbody>
+                       
+                              </tbody>
+                            </table>
+                          </div>
 
-									<div class="row mb-4">
-										<div class="col-md-6">
-											<div class="text-muted">Client</div>
-											<strong>
-												Charles Hall
-											</strong>
-											<p>
-												4183 Forest Avenue <br>
-												New York City <br>
-												10011 <br>
-												USA <br>
-												<a href="#">
-													chris.wood@gmail.com
-												</a>
-											</p>
-										</div>
-										<div class="col-md-6 text-md-end">
-											<div class="text-muted">Payment To</div>
-											<strong>
-												AdminKit Demo LLC
-											</strong>
-											<p>
-												354 Roy Alley <br>
-												Denver <br>
-												80202 <br>
-												USA <br>
-												<a href="#">
-													info@adminkit.com
-												</a>
-											</p>
-										</div>
-									</div>
-
-									<table class="table table-sm">
-										<thead>
-											<tr>
-												<th>Description</th>
-												<th>Quantity</th>
-												<th class="text-end">Amount</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>AdminKit Demo Theme Customization</td>
-												<td>2</td>
-												<td class="text-end">$150.00</td>
-											</tr>
-											<tr>
-												<td>Monthly Subscription </td>
-												<td>3</td>
-												<td class="text-end">$25.00</td>
-											</tr>
-											<tr>
-												<td>Additional Service</td>
-												<td>1</td>
-												<td class="text-end">$100.00</td>
-											</tr>
-											<tr>
-												<th>&nbsp;</th>
-												<th>Subtotal </th>
-												<th class="text-end">$275.00</th>
-											</tr>
-											<tr>
-												<th>&nbsp;</th>
-												<th>Shipping </th>
-												<th class="text-end">$8.00</th>
-											</tr>
-											<tr>
-												<th>&nbsp;</th>
-												<th>Discount </th>
-												<th class="text-end">5%</th>
-											</tr>
-											<tr>
-												<th>&nbsp;</th>
-												<th>Total </th>
-												<th class="text-end">$268.85</th>
-											</tr>
-										</tbody>
-									</table>
-
-									<div class="text-center">
-										<p class="text-sm">
-											<strong>Extra note:</strong>
-											Please send all items at the same time to the shipping address.
-											Thanks in advance.
-										</p>
-
-										<a href="#" class="btn btn-primary">
-											Print this receipt
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
+                        </aside>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+          </div>
+        </div>
+  
 			
 </asp:Content>

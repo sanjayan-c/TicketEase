@@ -21,22 +21,10 @@ namespace TicketingSystem
 
             if (!IsPostBack)
             {
-                string activeTabValue = activeTab.Value;
-
-                if (activeTabValue == "Bus")
-                {
+                
                     fillBusNumberVal();
-                }
-                else if (activeTabValue == "Train")
-                {
-                    
-                }                
-                else
-                {
-                    // Default case (e.g., on initial page load)
-                    fillBusNumberVal();
-                }
-
+                    fillTrainNumberVal();
+             
                 // Add "BusNo" as the default item
                 ddlBusNum.Items.Insert(0, new ListItem("BusNo", ""));
 

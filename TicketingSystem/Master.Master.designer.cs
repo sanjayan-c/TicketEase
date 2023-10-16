@@ -33,6 +33,15 @@ namespace TicketingSystem
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// LinkButton0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton0;
+
+        /// <summary>
         /// TmtblLnkBtn control.
         /// </summary>
         /// <remarks>
@@ -69,13 +78,13 @@ namespace TicketingSystem
         protected global::System.Web.UI.WebControls.LinkButton FnceLnkBtn;
 
         /// <summary>
-        /// RptLnkBtn control.
+        /// LinkButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton RptLnkBtn;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
 
         /// <summary>
         /// TcktIsuLnkBtn control.

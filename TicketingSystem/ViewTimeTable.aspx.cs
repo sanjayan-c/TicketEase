@@ -118,6 +118,7 @@ namespace TicketingSystem
                         HtmlTableRow headerRow = new HtmlTableRow();
                         headerRow.Cells.Add(new HtmlTableCell("th") { InnerText = "TrainNo" });
                         headerRow.Cells.Add(new HtmlTableCell("th") { InnerText = "Date" });
+                        headerRow.Cells.Add(new HtmlTableCell("th") { InnerText = "Day" });
                         headerRow.Cells.Add(new HtmlTableCell("th") { InnerText = "FromTime" });
                         headerRow.Cells.Add(new HtmlTableCell("th") { InnerText = "ToTime" });
                         headerRow.Cells.Add(new HtmlTableCell("th") { InnerText = "RouteLine" });
@@ -134,6 +135,10 @@ namespace TicketingSystem
                             HtmlTableRow dataRow = new HtmlTableRow();
                             dataRow.Cells.Add(new HtmlTableCell() { InnerText = row["TrainNo"].ToString() });
                             dataRow.Cells.Add(new HtmlTableCell() { InnerText = row["Date"].ToString() });
+                            DateTime dateValue = Convert.ToDateTime(row["Date"]);
+                            string dayOfWeek = dateValue.ToString("dddd");
+
+                            dataRow.Cells.Add(new HtmlTableCell() { InnerText = dayOfWeek }); // Add day of the week
                             dataRow.Cells.Add(new HtmlTableCell() { InnerText = row["FromTime"].ToString() });
                             dataRow.Cells.Add(new HtmlTableCell() { InnerText = row["ToTime"].ToString() });
                             dataRow.Cells.Add(new HtmlTableCell() { InnerText = row["RouteLine"].ToString() });

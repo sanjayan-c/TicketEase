@@ -23,11 +23,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
 
-        <!-- Page Heading -->
-    </div>
-
-
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header">
@@ -238,6 +233,7 @@
         </div>
     </div>
     
+            </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <script src="template/js/ViewTable.js"></script>
