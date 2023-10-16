@@ -7,6 +7,10 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-permission
         android:name="android.permission.CAMERA"/>
@@ -25,11 +29,12 @@
         <service
             android:name=".TripService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="location"/>
 
-<!--        <activity-->
-<!--            android:name=".InspectorHome"-->
-<!--            android:label="QR Scanner" />-->
+        <!--        <activity-->
+        <!--            android:name=".InspectorHome"-->
+        <!--            android:label="QR Scanner" />-->
 
         <activity
             android:name=".TripService"

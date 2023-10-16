@@ -91,33 +91,33 @@
                     android:src="@drawable/cus_profile_img" />
 
                 <TextView
-                    android:id="@+id/textViewBelowImage"
-                    android:layout_width="114dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/Inspectorname"
+                    android:layout_width="124dp"
+                    android:layout_height="19dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="41dp"
-                    android:layout_marginTop="141dp"
-                    android:layout_marginEnd="43dp"
-                    android:layout_marginBottom="40dp"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="138dp"
+                    android:layout_marginEnd="31dp"
+                    android:layout_marginBottom="43dp"
                     android:text="Customer Name"
                     android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/textViewBelowImage2"
-                    android:layout_width="54dp"
-                    android:layout_height="18dp"
+                    android:layout_width="87dp"
+                    android:layout_height="17dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="72dp"
                     android:layout_marginTop="165dp"
-                    android:layout_marginEnd="72dp"
-                    android:layout_marginBottom="17dp"
-                    android:text="@string/lbl_country"
+                    android:layout_marginEnd="39dp"
+                    android:layout_marginBottom="18dp"
+                    android:text="Sri Lanka"
                     android:textColor="@color/white" /> <!-- Customize text appearance as needed -->
             </RelativeLayout>
         </FrameLayout>
@@ -141,8 +141,8 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/cusAccBal1"
-                        android:layout_width="109dp"
+                        android:id="@+id/InsId3"
+                        android:layout_width="65dp"
                         android:layout_height="21dp"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
@@ -155,29 +155,71 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/vehicleno"
+                        android:layout_width="41dp"
+                        android:layout_height="19dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="98dp"
+                        android:layout_marginTop="97dp"
+                        android:layout_marginBottom="74dp"
+                        android:text=""
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/vehicle"
+                        android:layout_width="41dp"
+                        android:layout_height="19dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="99dp"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginBottom="101dp"
+                        android:text=""
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/inspectorId"
+                        android:layout_width="41dp"
+                        android:layout_height="19dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="41dp"
+                        android:layout_marginBottom="130dp"
+                        android:text=""
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp" />
+
+                    <TextView
                         android:id="@+id/cusAccBal2"
-                        android:layout_width="109dp"
-                        android:layout_height="21dp"
+                        android:layout_width="81dp"
+                        android:layout_height="17dp"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="99dp"
-                        android:layout_marginBottom="70dp"
+                        android:layout_marginBottom="74dp"
                         android:text="@string/lbl_vehicle_no"
                         android:textColor="#FFFFFF"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/cusAccBal3"
-                        android:layout_width="109dp"
-                        android:layout_height="21dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="11dp"
                         android:layout_marginTop="69dp"
-                        android:layout_marginBottom="100dp"
+                        android:layout_marginBottom="99dp"
                         android:text="@string/lbl_vehicle_type"
                         android:textColor="#FFFFFF"
                         android:textSize="14sp" />

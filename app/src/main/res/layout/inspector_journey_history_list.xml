@@ -4,37 +4,44 @@
     android:id="@+id/Ins_JourneyHistory"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="30dp"
-    android:layout_marginEnd="30dp"
-    android:layout_marginTop="20dp">
+    android:layout_marginStart="0dp"
+    android:layout_marginEnd="0dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/cus_purple">
     <!-- TextView on top -->
     <TextView
-        android:id="@+id/cusMyBookingTravelDateTextView"
+        android:id="@+id/TripDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:text="Date"
         android:textSize="18sp"
         android:textStyle="bold"
         android:paddingBottom="5dp"
-        android:gravity="center"
         android:textColor="#FFFFFF"
         android:layout_centerHorizontal="true" />
     <!-- FrameLayout below the TextView -->
     <FrameLayout
         android:id="@+id/cusMyBookingTicketDetails"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cusMyBookingTravelDateTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/cus_ticket_booking"
         android:paddingStart="5dp"
-        android:paddingEnd="5dp"
         android:paddingTop="20dp"
-        android:background="@drawable/cus_ticket_booking">
+        android:paddingEnd="5dp"
+        android:paddingBottom="5dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,6 +59,7 @@
                     android:text="Colombo - Colombo"
                     android:textSize="16dp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/BusTime"
                     style="@style/custxtOpenSansHebrewbold20"
@@ -65,71 +73,74 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/cusMyBookingFullDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/cusMyBookingFullDetails">
+                android:visibility="gone">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:ellipsize="end"
-                        android:textSize="16dp"
-                        android:layout_height="wrap_content"
+                        style="@style/custxtOpenSansHebrewregular15_1"
                         android:layout_width="0dp"
-                        android:layout_weight="0.7"
-                        android:singleLine="true"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
+                        android:layout_weight="0.7"
+                        android:ellipsize="end"
+                        android:singleLine="true"
                         android:text="passenger No"
-                        style="@style/custxtOpenSansHebrewregular15_1"/>
+                        android:textSize="16dp" />
 
 
-                                        <TextView
-                                            android:id="@+id/Passenger"
-                                            android:ellipsize="end"
-                                            android:textSize="16dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_width="0dp"
-                                            android:layout_weight="0.7"
-                                            android:singleLine="true"
-                                            android:layout_marginBottom="5dp"
-                                            android:text="passenger No"
-                                            style="@style/custxtOpenSansHebrewregular15_1"/>
                     <TextView
-                        android:ellipsize="end"
-                        android:textSize="16dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/Passenger"
+                        style="@style/custxtOpenSansHebrewregular15_1"
                         android:layout_width="0dp"
-                        android:layout_weight="0.7"
-                        android:singleLine="true"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:text="Income"
-                        style="@style/custxtOpenSansHebrewregular15_1"/>
-                                        <TextView
-                                            android:id="@+id/Income"
-                                            android:ellipsize="end"
-                                            android:textSize="16dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_width="0dp"
-                                            android:layout_weight="0.3"
-                                            android:singleLine="true"
-                                            android:layout_marginBottom="5dp"
-                                            android:text="Total income"
-                                            style="@style/custxtOpenSansHebrewregular15_1Bold"/>
-<!--                    <Button-->
-<!--                        android:ellipsize="end"-->
-<!--                        android:textSize="16dp"-->
-<!--                        android:id="@+id/StartTrip"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_weight="0.3"-->
-<!--                        android:singleLine="true"-->
-<!--                        android:layout_marginBottom="5dp"-->
-<!--                        android:text="Start trip"-->
-<!--                        style="@style/custxtOpenSansHebrewregular15_1Bold"/>-->
+                        android:layout_weight="0.7"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="passenger No"
+                        android:textSize="16dp" />
 
+                    <TextView
+                        style="@style/custxtOpenSansHebrewregular15_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="0.7"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="Income"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/Income"
+                        style="@style/custxtOpenSansHebrewregular15_1Bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="0.3"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="Total income"
+                        android:textSize="16dp" />
+                    <!--                    <Button-->
+                    <!--                        android:ellipsize="end"-->
+                    <!--                        android:textSize="16dp"-->
+                    <!--                        android:id="@+id/StartTrip"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_weight="0.3"-->
+                    <!--                        android:singleLine="true"-->
+                    <!--                        android:layout_marginBottom="5dp"-->
+                    <!--                        android:text="Start trip"-->
+                    <!--                        style="@style/custxtOpenSansHebrewregular15_1Bold"/>-->
 
 
                 </LinearLayout>
@@ -300,37 +311,39 @@
                 android:id="@+id/cusMyBookingArrowUpLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="end"
                 android:orientation="horizontal"
                 android:paddingBottom="20dp"
-                android:visibility="gone"
-                android:gravity="end">
+                android:visibility="gone">
+
                 <ImageView
-                    android:ellipsize="end"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
                     android:id="@+id/cusMyBookingArrowUp"
-                    android:layout_height="wrap_content"
+                    style="@style/custxtOpenSansHebrewregular15_1Bold"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:src="@drawable/cus_mybookings_expand_arrow"
-                    style="@style/custxtOpenSansHebrewregular15_1Bold"/>
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/cusMyBookingArrowDownLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="20dp"
-                android:gravity="end">
+                android:paddingBottom="20dp">
+
                 <ImageView
-                    android:ellipsize="end"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
                     android:id="@+id/cusMyBookingArrowDown"
-                    android:layout_height="wrap_content"
-                    android:rotation="180"
+                    style="@style/custxtOpenSansHebrewregular15_1Bold"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:rotation="180"
                     android:src="@drawable/cus_mybookings_expand_arrow"
-                    style="@style/custxtOpenSansHebrewregular15_1Bold"/>
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

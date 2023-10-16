@@ -18,7 +18,7 @@ class InspectorTimetableAdapter(
 ) : RecyclerView.Adapter<InspectorTimetableAdapter.ViewHolder>() {
 
     interface OnStartTripClickListener {
-        fun onStartTripClick(position: Int)
+        fun onStartTripClick(position: Int,sheduleId:String?)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -46,12 +46,14 @@ class InspectorTimetableAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         val item = data[position]
-        holder.BusRoute.text = item.startLocations + "-" + item.endLocations
-        holder.Time.text = item.time
+        holder.BusRoute.text = item.startLocation + "-" + item.endLocation
+        holder.Time.text = formatTimeRange(item.fromTime, item.toTime)
+
 
         holder.StartTrip.setOnClickListener {
-            onStartTripClickListener.onStartTripClick(position)
+            onStartTripClickListener.onStartTripClick(position,item.busScheduleId)
         }
 
         holder.cusMyBookingArrowDownLayout.setOnClickListener {
@@ -72,4 +74,33 @@ class InspectorTimetableAdapter(
         data = newData
         notifyDataSetChanged()
     }
+
+    private fun formatTimeRange(fromTime: String?, toTime: String?): String {
+        // Check for null values
+        if (fromTime.isNullOrBlank() || toTime.isNullOrBlank()) {
+            return "" // Handle null or blank values
+        }
+
+        // Split using any non-digit character
+        val fromParts = fromTime.split("\\D+".toRegex())
+        val toParts = toTime.split("\\D+".toRegex())
+
+        // Check if the split resulted in three parts
+        if (fromParts.size == 3 && toParts.size == 3) {
+            val fromHour = fromParts[0].toInt()
+            val fromMinute = fromParts[1].toInt()
+            val fromSecond = fromParts[2].toInt()
+
+            val toHour = toParts[0].toInt()
+            val toMinute = toParts[1].toInt()
+
+            val fromTimeStr = String.format("%02d:%02d", fromHour, fromMinute)
+            val toTimeStr = String.format("%02d:%02d", toHour, toMinute)
+
+            return "$fromTimeStr - $toTimeStr"
+        }
+
+        return "" // Handle invalid time format
+    }
+
 }

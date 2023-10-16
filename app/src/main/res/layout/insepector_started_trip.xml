@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/cusTransportationTimeTableBack"
-        android:layout_width="62dp"
-        android:layout_height="54dp"
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
@@ -64,36 +64,12 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/cusAccBal6"
-            android:layout_width="109dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginBottom="68dp"
-            android:text="Started Time"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
             android:id="@+id/cusAccBal5"
             android:layout_width="109dp"
             android:layout_height="21dp"
             android:layout_marginStart="172dp"
             android:layout_marginBottom="104dp"
-            android:text="@string/lbl_passenger_count"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/TripStartTime"
-            android:layout_width="109dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="172dp"
-            android:layout_marginBottom="68dp"
-            android:text="Started Time"
+            android:text="45"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +81,7 @@
             android:layout_height="21dp"
             android:layout_marginStart="36dp"
             android:layout_marginBottom="144dp"
-            android:text="@string/lbl_vehicle_no"
+            android:text="Booking Id"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -117,7 +93,7 @@
             android:layout_height="21dp"
             android:layout_marginStart="172dp"
             android:layout_marginBottom="144dp"
-            android:text="@string/lbl_vehicle_no"
+            android:text="001"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"

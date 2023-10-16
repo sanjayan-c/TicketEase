@@ -42,11 +42,11 @@
 
         <ImageView
             android:id="@+id/cusAccManagementBack"
-            android:layout_height="40dp"
-            android:layout_width="40dp"
+            android:layout_width="29dp"
+            android:layout_height="30dp"
             android:scaleType="fitXY"
-            tools:ignore="ContentDescription"
-            android:src="@drawable/cus_img_backarrow" />
+            android:src="@drawable/cus_img_backarrow"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -121,6 +121,18 @@
             android:text="Inspector ID"
             android:textSize="18sp" />
 
+        <TextView
+            style="@style/custxtOpenSansromanbold20"
+            android:id="@+id/inspectorIdview"
+            android:layout_width="148dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="I122345"
+            android:textSize="18sp" />
+
 
     </LinearLayout>
 
@@ -169,7 +181,7 @@
 
 
         <EditText
-            android:id="@+id/viewInputLastName"
+            android:id="@+id/viewInputFirstName"
             android:layout_width="38dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
@@ -183,6 +195,7 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/viewInputLastName"
             android:layout_width="54dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
@@ -219,8 +232,8 @@
             android:text="Vehicle Type"
             android:textSize="18sp" />
 
-        <Spinner
-
+        <TextView
+            android:id="@+id/VehicleTrip"
             android:layout_width="38dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
@@ -258,8 +271,8 @@
             android:text="Vehicle No"
             android:textSize="18sp" />
 
-        <EditText
-
+        <TextView
+            android:id="@+id/vehicleNo"
             android:layout_width="38dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
@@ -287,10 +300,10 @@
         android:layout_centerHorizontal="true">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCusUpdate3"
+            android:id="@+id/btnCusUpdate"
             style="@style/cusbtnSolidRoundedOutline"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="37dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:ellipsize="end"
@@ -300,15 +313,16 @@
             android:textAllCaps="false" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:ellipsize="end" android:gravity="center"
             android:id="@+id/btnCusCancel"
-            android:layout_height="50dp"
+            style="@style/cusbtnSolidRoundedOutline_1"
             android:layout_width="100dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:gravity="center"
             android:singleLine="true"
             android:text="Cancel"
-            android:layout_marginStart="10dp"
-            android:textAllCaps="false"
-            style="@style/cusbtnSolidRoundedOutline_1"/>
+            android:textAllCaps="false" />
     </LinearLayout>
 
 
