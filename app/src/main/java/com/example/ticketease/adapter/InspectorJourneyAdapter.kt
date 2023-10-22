@@ -21,6 +21,7 @@ class InspectorJourneyAdapter (private var data: List<InspectorJourneyItems>,
         val Time: TextView = itemView.findViewById(R.id.BusTime)
         val passenger:TextView = itemView.findViewById(R.id.Passenger)
         val Income:TextView = itemView.findViewById(R.id.Income)
+        val date:TextView = itemView.findViewById(R.id.TripDate)
         val cusMyBookingArrowUp: ImageView = itemView.findViewById(R.id.cusMyBookingArrowUp)
         val cusMyBookingArrowDown: ImageView = itemView.findViewById(R.id.cusMyBookingArrowDown)
         val cusMyBookingArrowUpLayout: LinearLayout = itemView.findViewById(R.id.cusMyBookingArrowUpLayout)
@@ -48,6 +49,7 @@ class InspectorJourneyAdapter (private var data: List<InspectorJourneyItems>,
         holder.Time.text = item.time
         holder.passenger.text = item.passenger
         holder.Income.text = item.income
+        holder.date.text = item.date
 
 
         holder.cusMyBookingArrowDownLayout.setOnClickListener {

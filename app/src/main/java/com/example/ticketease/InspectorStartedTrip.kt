@@ -26,7 +26,7 @@ class InspectorStartedTrip : AppCompatActivity() {
         val cusAccManagementBack = findViewById<ImageView>(R.id.cusTransportationTimeTableBack)
 //         EndTrip = findViewById(R.id.endbutton)
         scheduleId = intent.getStringExtra("scheduleId") ?: ""
-        vehicleType =intent.getStringExtra("vehicleType") ?: ""
+        vehicleType =intent.getStringExtra("VehicleType") ?: ""
 
 
         cusAccManagementBack.setOnClickListener { // Start the CustomerAccountManagement activity

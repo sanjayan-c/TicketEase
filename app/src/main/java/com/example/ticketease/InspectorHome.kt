@@ -71,7 +71,7 @@ WHERE i.insId = '$user';
     """
 
                 try {
-                    val statement = connection.createStatement()
+                    val statement = connection.prepareStatement(query)
                     val resultSet = statement.executeQuery(query)
 
                     while (resultSet.next()) {
@@ -156,6 +156,8 @@ WHERE i.insId = '$user';
 
         JourneyHistory.setOnClickListener {
             val intent = Intent(this@InspectorHome, InspectorJourneyHistory::class.java)
+            intent.putExtra("inspectorVehicleNo", "NC-1341")
+            intent.putExtra("inspectorVehicleType",vehicleType)
             startActivity(intent)
         }
     }

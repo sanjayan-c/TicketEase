@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding=true
+    }
 }
 
 dependencies {
@@ -54,5 +57,9 @@ dependencies {
     implementation ("net.sourceforge.jtds:jtds:1.3.1")
     implementation("mysql:mysql-connector-java:5.1.49")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
+    implementation ("com.google.android.gms:play-services-location:18.0.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+
 
 }

@@ -13,11 +13,16 @@ import java.util.*
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
+import android.os.Binder
 import android.util.Log
+import android.view.LayoutInflater
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.ticketease.data.DistanceDataSingleton
+import com.example.ticketease.data.SharedViewModel
+import com.example.ticketease.databinding.ActivityMainBinding
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
@@ -29,30 +34,44 @@ import kotlin.math.sin
 import kotlin.math.sqrt
 
 
-class SharedViewModel : ViewModel() {
-    private val _totalDistance = MutableLiveData<Double>()
-    val totalDistance: LiveData<Double> get() = _totalDistance
-
-    fun updateTotalDistance(distance: Double) {
-        _totalDistance.value = distance
-    }
-}
+//class SharedViewModel : ViewModel() {
+//    private val _totalDistance = MutableLiveData<Double>()
+//    val totalDistance: LiveData<Double> get() = _totalDistance
+//
+//    fun updateTotalDistance(distance: Double) {
+//        _totalDistance.value = distance
+//    }
+//}
 
 
 
 class TripService : Service() {
 
 
-    private lateinit var sharedViewModel: SharedViewModel
+  //  private lateinit var sharedViewModel: SharedViewModel
 
     private val timer = Timer()
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var locationCallback: LocationCallback? = null
     private var totalDistance: Double = 0.0
     private var startLatLng: LatLng? = null
+   // private var binding: TripService? =null
+
+    private val binder = MyBinder()
+    private lateinit var sharedViewModel: SharedViewModel
+
+    inner class MyBinder : Binder() {
+        fun getService(): TripService {
+            return this@TripService
+        }
+    }
     override fun onCreate() {
         super.onCreate()
+
         // Other initialization code...
+//        sharedViewModel = ViewModelProvider.AndroidViewModelFactory(application)
+//            .create(SharedViewModel::class.java)
+
         sharedViewModel = ViewModelProvider.AndroidViewModelFactory(application)
             .create(SharedViewModel::class.java)
 
@@ -68,7 +87,11 @@ class TripService : Service() {
 
 
     override fun onBind(intent: Intent?): IBinder? {
-        return null
+
+        sharedViewModel = ViewModelProvider.AndroidViewModelFactory(application)
+            .create(SharedViewModel::class.java)
+        return binder
+
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -118,6 +141,10 @@ class TripService : Service() {
 
             locationCallback = object : LocationCallback() {
                 override fun onLocationResult(locationResult: LocationResult) {
+
+//                    val sharedViewModel = ViewModelProvider.AndroidViewModelFactory(application)
+//                        .create(SharedViewModel::class.java)
+
                     for (location in locationResult.locations) {
                         // Handle location updates here
                         val latitude = location.latitude
@@ -130,10 +157,15 @@ class TripService : Service() {
                             totalDistance += calculateDistance(startLatLng!!, endLatLng)
                             startLatLng = endLatLng
 
-                            sharedViewModel.updateTotalDistance(totalDistance)
+
+
+                          //  sharedViewModel.updateTotalDistance(totalDistance)
                         }
 
 
+// Inside your location update callback
+//                        sharedViewModel.setTotalDistance(totalDistance)
+                        DistanceDataSingleton.Distance= totalDistance
 
                         Log.d("LocationUpdate", "Total Distance : $totalDistance")
                     }

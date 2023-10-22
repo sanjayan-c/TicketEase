@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,7 +38,7 @@ class InspectorTimeTable : AppCompatActivity(), InspectorTimetableAdapter.OnStar
     private val cusConSQL = CusConSQL()
     private lateinit var VehicleNo:String
     private lateinit var VehicleType:String
-    val dataList = mutableListOf<InspectorTimeTableItems>()
+   // val dataList = mutableListOf<InspectorTimeTableItems>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.inspector_timetable)
@@ -253,15 +254,16 @@ class InspectorTimeTable : AppCompatActivity(), InspectorTimetableAdapter.OnStar
         val intent = Intent(this@InspectorTimeTable, InspectorStartedTrip::class.java)
         intent.putExtra("scheduleId", scheduleId)
         intent.putExtra("VehicleType", VehicleType)
+        cusConSQL.conclass { connection ->
         val query :String
         if(VehicleType=="Bus") {
              query =
-                "UPDATE Bus_schedule SET TripStarted = TRUE WHERE BusScheduleId = ? AND TripStarted = FALSE"
+                "UPDATE Bus_schedule SET TripStarted = TRUE WHERE BusScheduleId = ? AND TripStarted IS NULL"
         }else{
              query =
-                "UPDATE Train_schedule SET TripStarted = TRUE WHERE TrainScheduleId = ? AND TripStarted = FALSE"
+                "UPDATE Train_schedule SET TripStarted = TRUE WHERE TrainScheduleId = ? AND TripStarted IS NULL"
         }
-        cusConSQL.conclass { connection ->
+
             if (connection != null) {
                 try {
                     val preparedStatement = connection.prepareStatement(query)
@@ -272,6 +274,8 @@ class InspectorTimeTable : AppCompatActivity(), InspectorTimetableAdapter.OnStar
                     if (rowsUpdated > 0) {
                         // Trip started successfully
                         Log.e("Trip","Trip started")
+
+                        Toast.makeText(this, "Trip started", Toast.LENGTH_SHORT).show()
                         // You may want to perform additional actions or update UI
                     } else {
                         // Trip may have already started or BusScheduleId not found
