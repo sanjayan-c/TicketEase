@@ -96,20 +96,23 @@ class CustomerSignUp : AppCompatActivity() {
         cusBtnLSignUp.setOnClickListener{
             val password = cusEdtPassword.text.toString()
             val confirmPassword = cusConfirmEdtPassword.text.toString()
+            val nic = cusEdtNic.text.toString()
+            val email=cusEdtEmail.text.toString()
 
+            if(password != "" || nic != "" || email != ""){
             if (password == confirmPassword) {
                 runOnUiThread {
                     cus_signup_ProgressBarLayout.visibility = View.VISIBLE
                     cus_signup_ProgressBarLayout.isClickable = true
                     cus_signup_ProgressBarLayout.isFocusable = true
                 }
-                val nic = cusEdtNic.text.toString()
-                val email=cusEdtEmail.text.toString()
-                val password=cusEdtPassword.text.toString()
                 signUp(nic,email,password)
             } else {
                 // Passwords do not match, show an error message
                 passwordsNotMatch.visibility = View.VISIBLE
+            }
+            }else{
+                Toast.makeText(this, "Fill the above", Toast.LENGTH_SHORT,).show()
             }
         }
 
@@ -129,12 +132,59 @@ class CustomerSignUp : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(ContentValues.TAG, "createUserWithEmail:success")
-                    addUserToDatabase(nic,email,userAuth.currentUser?.uid!!,"user" )
-                    addUserToSqlDatabase(nic, email, userAuth.currentUser?.uid!!)
+
+                    // Send email verification
+                    val user = userAuth.currentUser
+                    user?.sendEmailVerification()
+                        ?.addOnCompleteListener { verificationTask ->
+                            if (verificationTask.isSuccessful) {
+
+                                addUserToDatabase(nic,email,userAuth.currentUser?.uid!!,"user" )
+                                addUserToSqlDatabase(nic, email, userAuth.currentUser?.uid!!)
+
+                                Log.d(ContentValues.TAG, "Email verification sent.")
+                                Toast.makeText(
+                                    this,
+                                    "Verification email sent. Please check your email.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                // You can navigate to the login screen or perform any other actions here
+                            } else {
+                                Log.e(ContentValues.TAG, "Failed to send verification email.", verificationTask.exception)
+                                Toast.makeText(
+                                    this,
+                                    "Failed to send verification email. Please try again later.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                cus_signup_ProgressBarLayout.visibility = View.GONE
+                                cus_signup_ProgressBarLayout.isClickable = false
+                                cus_signup_ProgressBarLayout.isFocusable = false
+                            }
+                        }
+
+
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(this@CustomerSignUp,"Some error has occured", Toast.LENGTH_SHORT).show()
+
+                    // If sign-up fails, check the error code
+                    val errorCode = (task.exception as FirebaseAuthException).errorCode
+                    if (errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
+                        // Email already exists
+                        Toast.makeText(
+                            this,
+                            "Email already exists",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        // Handle other sign-up errors
+                        Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(this, "Some error has occurred", Toast.LENGTH_SHORT).show()
+                    }
+                    cus_signup_ProgressBarLayout.visibility = View.GONE
+                    cus_signup_ProgressBarLayout.isClickable = false
+                    cus_signup_ProgressBarLayout.isFocusable = false
                 }
             }
     }
@@ -174,7 +224,7 @@ class CustomerSignUp : AppCompatActivity() {
                         cus_signup_ProgressBarLayout.isClickable = false
                         cus_signup_ProgressBarLayout.isFocusable = false
                     }
-                    val intent= Intent(this@CustomerSignUp,CustomerHome::class.java)
+                    val intent= Intent(this,CustomerLogIn::class.java)
                     finish()
                     startActivity(intent)
                 } catch (e: SQLException) {

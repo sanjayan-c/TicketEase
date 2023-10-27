@@ -69,7 +69,7 @@
             android:background="@drawable/cus_purple1"
             android:textColor="#FFFFFF" />
         <ImageView
-            android:id="@+id/greenDownlaod"
+            android:id="@+id/greenDownload"
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:layout_centerVertical="true"

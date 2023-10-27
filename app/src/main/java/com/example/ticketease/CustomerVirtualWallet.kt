@@ -71,11 +71,21 @@ class CustomerVirtualWallet : AppCompatActivity() {
 
                 val user = userAuth.currentUser?.uid ?: ""
 
-                val query = "SELECT c.cusId, SUM(cp.price) AS totalPayment, MAX(cp.date) AS lastPaymentDate, MAX(cp.time) AS lastPaymentTime " +
-                        "FROM customer c " +
-                        "LEFT JOIN CustomerPayment cp ON c.cusId = cp.cusId " +
-                        "WHERE c.cusId = '$user' " +
-                        "GROUP BY c.cusId";
+//                val query = "SELECT c.cusId, SUM(cp.price) AS totalPayment, MAX(cp.date) AS lastPaymentDate, MAX(cp.time) AS lastPaymentTime " +
+//                        "FROM customer c " +
+//                        "LEFT JOIN CustomerPayment cp ON c.cusId = cp.cusId " +
+//                        "WHERE c.cusId = '$user' " +
+//                        "GROUP BY c.cusId";
+
+                val query = """
+                            SELECT c.cusId, SUM(cp.price) AS totalPayment, MAX(cp.date) AS lastPaymentDate,
+                                    (SELECT MAX(time) FROM CustomerPayment WHERE cusId = '$user' AND date = MAX(cp.date)) AS lastPaymentTime
+                            FROM customer c
+                            LEFT JOIN CustomerPayment cp ON c.cusId = cp.cusId
+                            WHERE c.cusId = '$user'
+                            GROUP BY c.cusId
+                            """
+
 
                 try {
                     // Create a statement

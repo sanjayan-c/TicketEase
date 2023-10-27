@@ -23,8 +23,8 @@ data class CustomerMyBookingsItem(
     val date: String,
     val issuedDate: String,
     val issuedTime: String,
-    val distance: BigDecimal,
-    val cost: BigDecimal
+        val distance: BigDecimal,
+        val cost: BigDecimal
 )
 
 data class CustomerTransactions(

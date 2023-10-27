@@ -9,6 +9,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.text.style.UnderlineSpan
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -59,7 +60,11 @@ class CustomerLogIn : AppCompatActivity() {
         cusBtnLogin.setOnClickListener{
             val email=cusEdtEmail.text.toString()
             val password=cusEdtPassword.text.toString()
-            login(email,password)
+            if(email != "" || password != "" ) {
+                login(email, password)
+            }else {
+                Toast.makeText(this@CustomerLogIn, "Fill the above", Toast.LENGTH_SHORT,).show()
+            }
         }
 
         cusBtnRegister.setOnClickListener{
@@ -79,14 +84,57 @@ class CustomerLogIn : AppCompatActivity() {
         userAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    //logging in
-                    val intent= Intent(this@CustomerLogIn,CustomerHome::class.java)
-                    finish()
-                    startActivity(intent)
+//                    val user = userAuth.currentUser
+//                    if (user != null && user.isEmailVerified) {
+                        // User is authenticated and their email is verified
+                        Log.d(ContentValues.TAG, "signInWithEmail:success")
+
+                        //logging in
+                        val intent= Intent(this@CustomerLogIn,CustomerHome::class.java)
+                        finish()
+                        startActivity(intent)
+//                    } else {
+//                        // User is authenticated but their email is not verified
+//                        Toast.makeText(
+//                            this,
+//                            "Please verify your email address first.",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    }
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(ContentValues.TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(this@CustomerLogIn, "Incorrect Username or Password", Toast.LENGTH_SHORT,).show()
+                    // Check the error message
+                    val errorMessage = task.exception?.message
+                    if (errorMessage != null) {
+                        if (errorMessage.contains("password")) {
+                            // Incorrect password
+                            Toast.makeText(
+                                this,
+                                "Incorrect password",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else if (errorMessage.contains("no user record")) {
+                            // Email not found
+                            Toast.makeText(
+                                this,
+                                "No account found for this email",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            // Other error, show a generic message
+                            Toast.makeText(
+                                this,
+                                "Login failed. Please try again.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    } else {
+                        // Unexpected error, show a generic message
+                        Toast.makeText(
+                            this,
+                            "Login failed. Please try again.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
     }

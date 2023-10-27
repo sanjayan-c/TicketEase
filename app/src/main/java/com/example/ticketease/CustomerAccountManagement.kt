@@ -263,6 +263,8 @@ class CustomerAccountManagement : AppCompatActivity() {
 
                 // Use the base64String as needed (e.g., store it in the database)
             }
+
+
         }
     }
 

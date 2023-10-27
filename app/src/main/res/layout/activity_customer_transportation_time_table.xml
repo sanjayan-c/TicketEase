@@ -155,30 +155,16 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 style="@style/custxtInterregular20" />
-            <LinearLayout android:gravity="start"
-                android:id="@+id/cusTransStart"
+            <AutoCompleteTextView
+                android:id="@+id/cusTransStartAutoCompleteTextView"
+                android:gravity="center"
                 android:layout_height="30dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                android:background="@drawable/cus_profile_inputbox_border">
-                <Spinner
-                    android:id="@+id/cusTransStartSpinner"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.8"
-                    android:layout_width="0dp"
-                    android:gravity="center"
-                    android:textSize="18sp"
-                    android:background="@null" />
-                <ImageView
-                    android:id="@+id/cusTransStartSelect"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/cus_img_doubledown"
-                    tools:ignore="ContentDescription" />
-            </LinearLayout>
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/cus_profile_inputbox_border"
+                android:textSize="18sp" />
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -195,30 +181,16 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 style="@style/custxtInterregular20" />
-            <LinearLayout android:gravity="start"
-                android:id="@+id/cusTransEnd"
+
+            <AutoCompleteTextView
+                android:id="@+id/cusTransEndAutoCompleteTextView"
+                android:gravity="center"
                 android:layout_height="30dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                android:background="@drawable/cus_profile_inputbox_border">
-                <Spinner
-                    android:id="@+id/cusTransEndSpinner"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.8"
-                    android:layout_width="0dp"
-                    android:gravity="center"
-                    android:textSize="18sp"
-                    android:background="@null" />
-                <ImageView
-                    android:id="@+id/cusTransEndSelect"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/cus_img_doubledown"
-                    tools:ignore="ContentDescription" />
-            </LinearLayout>
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/cus_profile_inputbox_border"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -24,13 +25,9 @@ import java.util.Calendar
 class CustomerTransportationTimeTable : AppCompatActivity() {
 
     private lateinit var cusTransDateText: TextView
-    private lateinit var cusTransStartSpinner: Spinner
-    private lateinit var cusTransEndSpinner: Spinner
     private lateinit var cusTransMethodSpinner: Spinner
     private lateinit var cusTransMethodSelect: ImageView
     private lateinit var cusTransDateSelect: ImageView
-    private lateinit var cusTransStartSelect: ImageView
-    private lateinit var cusTransEndSelect: ImageView
     private var cusLocations: MutableList<String> = mutableListOf()
     private var cusEndLocations: MutableList<String> = mutableListOf()
     private lateinit var cusStartLocationsAdapter: ArrayAdapter<String>
@@ -90,48 +87,38 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
             showDatePicker()
         }
 
+        val cusTransMethodSpinner = findViewById<Spinner>(R.id.cusTransMethodSpinner)
+        val cusTransStartAutoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.cusTransStartAutoCompleteTextView)
 
-        cusTransStartSpinner = findViewById(R.id.cusTransStartSpinner)
-        cusTransStartSelect = findViewById(R.id.cusTransStartSelect)
-        cusTransEndSpinner = findViewById(R.id.cusTransEndSpinner)
-        cusTransEndSelect = findViewById(R.id.cusTransEndSelect)
-
-        // Start place
+        // Set up the initial AutoCompleteTextView with an empty adapter
+        val cusStartLocationsAdapter = ArrayAdapter<String>(this, R.layout.customer_start_location_dropdown, mutableListOf())
+        cusTransStartAutoCompleteTextView.setAdapter(cusStartLocationsAdapter)
+        cusTransStartAutoCompleteTextView.threshold = 1
 
 
 
-        // Handle the click event on the ImageView to show the dropdown
-        cusTransStartSelect.setOnClickListener {
-            cusTransStartSpinner.performClick() // Show the dropdown
+        cusTransStartAutoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+            selectedStartLocation  = parent.getItemAtPosition(position).toString()
+            // Handle item selection when the user chooses a suggestion
+            // Do something with the selected location
+        }
+
+        val cusTransEndAutoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.cusTransEndAutoCompleteTextView)
+
+        // Set up the initial AutoCompleteTextView with an empty adapter
+        val cusEndLocationsAdapter = ArrayAdapter<String>(this, R.layout.customer_end_location_dropdown, mutableListOf())
+        cusTransEndAutoCompleteTextView.setAdapter(cusEndLocationsAdapter)
+        cusTransEndAutoCompleteTextView.threshold = 1
+
+
+
+        cusTransEndAutoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+            selectedEndLocation  = parent.getItemAtPosition(position).toString()
+            // Handle item selection when the user chooses a suggestion
+            // Do something with the selected location
         }
 
         //End place
-
-
-
-        // Handle the click event on the ImageView to show the dropdown
-        cusTransEndSelect.setOnClickListener {
-            cusTransEndSpinner.performClick() // Show the dropdown
-        }
-
-
-        // Transport Time Table
-//        val sampleData = listOf(
-//            CustomerTransportationItem("Colombo",  "Galle","NA - 9856", "10.15 A.M","100"),
-//            CustomerTransportationItem("Kandy",  "Jaffna","ND - 9556", "1.15 P.M","17"),
-//            CustomerTransportationItem("Jaffna",  "Galle","NA - 3216", "4.15 P.M","430"),
-//            CustomerTransportationItem("Trincomalee",  "Galle","NA - 6556", "7.15 P.M","65"),
-//            CustomerTransportationItem("Jaffna",  "Colombo","NA - 3216", "4.15 P.M","87"),
-//            CustomerTransportationItem("Kandy",  "Galle","NA - 6556", "7.15 P.M","25")
-//        )
-//        var cusTransSearch=findViewById<TextView>(R.id.cusTransSearch)
-//        cusTransSearch.setOnClickListener {
-//            val recyclerView = findViewById<RecyclerView>(R.id.recyclerListCustomerTransport)
-//            Log.d("SelectedDate", selectedDate)
-//            val adapter = CustomerTransportationAdapter(sampleData, selectedDate)
-//            recyclerView.adapter = adapter
-//            recyclerView.layoutManager = LinearLayoutManager(this)
-//        }
 
         val cusTransSearch = findViewById<TextView>(R.id.cusTransSearch)
         // Create a list to store the retrieved data
@@ -139,16 +126,24 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
 
         cusTransSearch.setOnClickListener {
             val selectedTransportMethod = cusTransMethodSpinner.selectedItem.toString()
-            val selectedStartLocation = cusTransStartSpinner.selectedItem.toString()
-            val selectedEndLocation = cusTransEndSpinner.selectedItem.toString()
+            val selectedStartLocation = selectedStartLocation
+            val selectedEndLocation = selectedEndLocation
+            Log.d("selectedTransportMethod", selectedTransportMethod)
+            Log.d("selectedStartLocation", selectedStartLocation)
+            Log.d("selectedEndLocation", selectedEndLocation)
+//            val selectedEndLocation = cusTransEndSpinner.selectedItem.toString()
+
             // Check if a date is selected
             if (selectedDate.isNullOrEmpty()) {
                 // Show a message to the user indicating that a date needs to be selected
                 Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show()
+            } else if(selectedStartLocation=="" || selectedEndLocation=="" ){
+                // Show a message to the user indicating that start and end locations cannot be the same
+                Toast.makeText(this, "Select valid locations", Toast.LENGTH_SHORT).show()
             } else if(selectedStartLocation == selectedEndLocation){
                 // Show a message to the user indicating that start and end locations cannot be the same
                 Toast.makeText(this, "Start and end locations can't be same", Toast.LENGTH_SHORT).show()
-            }else {
+            } else {
                 var loadingCusTTProgressBarLayout =
                     findViewById<FrameLayout>(R.id.loadingCusTTProgressBarLayout)
                 var loadingCusTTProgressBar =
@@ -211,36 +206,6 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
                                     val time = resultSet.getString("FromTime")
                                     val routeNo = resultSet.getString("RouteNo")
 
-//                                    val from = resultSet.getString("Date")
-//                                    val to = resultSet.getString("ToDay")
-//
-//                                    val daysOfWeek = arrayOf(
-//                                        "Monday",
-//                                        "Tuesday",
-//                                        "Wednesday",
-//                                        "Thursday",
-//                                        "Friday",
-//                                        "Saturday",
-//                                        "Sunday"
-//                                    )
-//
-//                                    // Get the indices of the selected day, fromDay, and toDay
-//                                    val selectedDayIndex = daysOfWeek.indexOf(formattedWeekDay)
-//                                    val fromDayIndex = daysOfWeek.indexOf(from)
-//                                    val toDayIndex = daysOfWeek.indexOf(to)
-//
-//                                    // Check if the selected day falls within the range of fromDay to toDay
-//                                    if (selectedDayIndex in (fromDayIndex..toDayIndex)) {
-//                                        // Create a CustomerTransportationItem and add it to the list
-//                                        val transportationItem = CustomerTransportationItem(
-//                                            selectedStartLocation,
-//                                            selectedEndLocation,
-//                                            vehicleNo,
-//                                            time,
-//                                            routeNo
-//                                        )
-//                                        retrievedData.add(transportationItem)
-//                                    }
                                     // Create a CustomerTransportationItem and add it to the list
                                     val transportationItem = CustomerTransportationItem(
                                         selectedTransportMethod,
@@ -285,36 +250,8 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
                                     val vehicleNo = resultSet.getString("trainNo")
                                     val time = resultSet.getString("FromTime")
                                     val routeNo = resultSet.getString("RouteLine")
-//                                    val from = resultSet.getString("FromDay")
-//                                    val to = resultSet.getString("ToDay")
-//
-//                                    val daysOfWeek = arrayOf(
-//                                        "Monday",
-//                                        "Tuesday",
-//                                        "Wednesday",
-//                                        "Thursday",
-//                                        "Friday",
-//                                        "Saturday",
-//                                        "Sunday"
-//                                    )
-//
-//                                    // Get the indices of the selected day, fromDay, and toDay
-//                                    val selectedDayIndex = daysOfWeek.indexOf(formattedWeekDay)
-//                                    val fromDayIndex = daysOfWeek.indexOf(from)
-//                                    val toDayIndex = daysOfWeek.indexOf(to)
-//
-//                                    // Check if the selected day falls within the range of fromDay to toDay
-//                                    if (selectedDayIndex in (fromDayIndex..toDayIndex)) {
-//                                        // Create a CustomerTransportationItem and add it to the list
-//                                        val transportationItem = CustomerTransportationItem(
-//                                            selectedStartLocation,
-//                                            selectedEndLocation,
-//                                            vehicleNo,
-//                                            time,
-//                                            routeNo
-//                                        )
-//                                        retrievedData.add(transportationItem)
-//                                    }
+
+
                                     // Create a CustomerTransportationItem and add it to the list
                                     val transportationItem = CustomerTransportationItem(
                                         selectedTransportMethod,
@@ -384,7 +321,8 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
 
         // Calculate the maximum date (2 weeks from today)
-        calendar.add(Calendar.DAY_OF_YEAR, 14)
+        val maxCalendar = Calendar.getInstance()
+        maxCalendar.add(Calendar.DAY_OF_YEAR, 14)
         val maxYear = calendar.get(Calendar.YEAR)
         val maxMonth = calendar.get(Calendar.MONTH)
         val maxDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
@@ -422,60 +360,103 @@ class CustomerTransportationTimeTable : AppCompatActivity() {
             },
             year, month, dayOfMonth
         )
-        // Set a minimum date constraint (e.g., today's date)
-//        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
-        // Set a maximum date constraint (2 weeks from today)
-//        val maxDateCalendar = Calendar.getInstance()
-//        maxDateCalendar.set(maxYear, maxMonth, maxDayOfMonth)
-//        datePickerDialog.datePicker.maxDate = maxDateCalendar.timeInMillis
-        // Show the DatePickerDialog
+
+        // Set the minimum date as today
+        datePickerDialog.datePicker.minDate = System.currentTimeMillis()
+
+        // Set the maximum date as 2 weeks from today
+        val maxDate = maxCalendar.timeInMillis
+        datePickerDialog.datePicker.maxDate = maxDate
+
         datePickerDialog.show()
     }
 
-    fun method(selectedTravelMethod:String) {
 
-        if (selectedTravelMethod.equals("Bus")) {
-            cusLocations = mutableListOf(
-                "Colombo",
-                "Panadura",
-                "Dellawa",
-                "Galle",
-                "Ella",
-                "Kandy",
-                "Jaffna",
-                "Nuwara Eliya"
-            )
-            cusLocations = cusLocations.sorted().toMutableList()
+    private fun method(selectedTravelMethod: String) {
+        val cusTransStartAutoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.cusTransStartAutoCompleteTextView)
+        val cusTransEndAutoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.cusTransEndAutoCompleteTextView)
 
-            // Create an ArrayAdapter to populate the Spinner with travel methods
-            cusStartLocationsAdapter =
-                ArrayAdapter(this, R.layout.customer_start_location_dropdown, cusLocations)
-            cusStartLocationsAdapter.setDropDownViewResource(R.layout.customer_start_location_dropdown)
-            // Set the adapter for the Spinner
-            cusTransStartSpinner.adapter = cusStartLocationsAdapter
 
-            cusEndLocationsAdapter =
-                ArrayAdapter(this, R.layout.customer_end_location_dropdown, cusLocations)
-            cusEndLocationsAdapter.setDropDownViewResource(R.layout.customer_end_location_dropdown)
-            // Set the adapter for the Spinner
-            cusTransEndSpinner.adapter = cusEndLocationsAdapter
-        } else {
-            cusLocations = mutableListOf("Colombo Fort", "Badulla", "Kokuvil", "Kankesanthurai")
-            cusLocations = cusLocations.sorted().toMutableList()
+        // Create the database connection using the cusConSQL.conclass function
+        val cusConSQL = CusConSQL()
+        cusConSQL.conclass { connection ->
+            if (connection != null) {
+                try {
 
-            // Create an ArrayAdapter to populate the Spinner with travel methods
-            cusStartLocationsAdapter =
-                ArrayAdapter(this, R.layout.customer_start_location_dropdown, cusLocations)
-            cusStartLocationsAdapter.setDropDownViewResource(R.layout.customer_start_location_dropdown)
-            // Set the adapter for the Spinner
-            cusTransStartSpinner.adapter = cusStartLocationsAdapter
+                    val cusLocations: MutableList<String> = mutableListOf()
 
-            cusEndLocationsAdapter =
-                ArrayAdapter(this, R.layout.customer_end_location_dropdown, cusLocations)
-            cusEndLocationsAdapter.setDropDownViewResource(R.layout.customer_end_location_dropdown)
-            // Set the adapter for the Spinner
-            cusTransEndSpinner.adapter = cusEndLocationsAdapter
+                    // Create a list to store the retrieved data
+                    var query: String = ""
+                    if (selectedTravelMethod.equals("Bus")) {
+                        // Create a SQL query to fetch data based on the selected criteria
+                        query =  "SELECT StartLocation AS Location " +
+                                "FROM Bus_schedule " +
+                                "UNION " +
+                                "SELECT EndLocation AS Location " +
+                                "FROM Bus_schedule;";
+
+                        val preparedStatement = connection.prepareStatement(query)
+                        val resultSet = preparedStatement.executeQuery()
+
+                        while (resultSet.next()) {
+                            // Retrieve data from the result set and create CustomerTransportationItem objects
+                            val location = resultSet.getString("Location")
+                            cusLocations.add(location)
+                        }
+
+                        resultSet.close()
+                        preparedStatement.close()
+                    } else {
+                        query =  "SELECT StartLocation AS Location " +
+                                "FROM Train_schedule " +
+                                "UNION " +
+                                "SELECT EndLocation AS Location " +
+                                "FROM Train_schedule;";
+
+                        val preparedStatement = connection.prepareStatement(query)
+                        val resultSet = preparedStatement.executeQuery()
+
+                        while (resultSet.next()) {
+                            // Retrieve data from the result set and create CustomerTransportationItem objects
+                            val location = resultSet.getString("Location")
+                            cusLocations.add(location)
+                        }
+
+                        resultSet.close()
+                        preparedStatement.close()
+                    }
+
+                    // Check if retrievedData is empty
+                    if (cusLocations.isEmpty()) {
+                        runOnUiThread {
+                            // Show the "Nothing to show" TextView
+
+                        }
+                    }else {
+                        runOnUiThread {
+                            val cusStartLocationsAdapter = ArrayAdapter(this, R.layout.customer_start_location_dropdown, cusLocations)
+                            cusTransStartAutoCompleteTextView.setAdapter(cusStartLocationsAdapter)
+                            val cusEndLocationsAdapter = ArrayAdapter(this, R.layout.customer_end_location_dropdown, cusLocations)
+                            cusTransEndAutoCompleteTextView.setAdapter(cusEndLocationsAdapter)
+                        }
+                    }
+                } catch (e: SQLException) {
+                    e.printStackTrace()
+                    // Handle any errors
+                }finally {
+                    // Close the connection in the finally block to ensure it's always closed
+                    connection.close()
+                }
+            } else {
+                // Handle the case where the database connection is null
+            }
+
+
         }
+
+
+
+
     }
 
 }

@@ -98,7 +98,10 @@ class CustomerMyBookingsAdapter(private val data: List<CustomerMyBookingsItem>) 
         }else{
             holder.cusMyBookingDistanceLayout.visibility = View.VISIBLE
             holder.cusMyBookingCostLayout.visibility = View.VISIBLE
-            holder.cusMyBookingDistance.text = item.distance.toString() + " Km"
+            //holder.cusMyBookingDistance.text = (item.distance/1000.0).toString() + " km"
+            // Assuming item.distance is a Double or Float
+            val distanceInKm = item.distance / BigDecimal(1000.0)
+            holder.cusMyBookingDistance.text = "$distanceInKm km"
             holder.cusMyBookingCost.text = "LKR "+item.cost
         }
 

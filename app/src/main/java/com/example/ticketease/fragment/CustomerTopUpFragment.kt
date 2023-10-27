@@ -133,6 +133,9 @@ class CustomerTopUpFragment : Fragment() {
                                 }
 
                                 requireActivity().runOnUiThread {
+                                    if (!isAdded) {
+                                        return@runOnUiThread
+                                    }
                                     // Hide the loading screen
                                     cusFragmentTopUpProgressBarLayout?.visibility = View.GONE
                                     cusFragmentTopUpProgressBar?.visibility = View.GONE
